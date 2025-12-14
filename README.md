@@ -41,7 +41,7 @@ El *firmware* ahora requiere una estructura de directorios clara para el modo GI
 
 1.  Formatee la tarjeta Micro SD como **FAT32**.
 2.  Cree el directorio base: **`/gifs`** en la raíz.
-3.  Cree sus colecciones como **subcarpetas** dentro de `/gifs` (ej., `/gifs/abstracto`, `/gifs/animales`).
+3.  Cree sus colecciones como **subcarpetas** dentro de `/gifs` (ej., `/gifs/Arcade`, `/gifs/Consolas`).
 
 **Estructura de la SD Requerida:**
 ├── gifs/ │ ├── Arcade/ <-- Aquí van los GIFs │ └── Consolas/ <-- Aquí van los GIFs ├── gif_cache.txt <-- Generado por el firmware (Índice) └── gif_cache.sig <-- Generado por el firmware (Firma de validación)
@@ -50,7 +50,6 @@ El *firmware* ahora requiere una estructura de directorios clara para el modo GI
 1.  Abra el proyecto en su entorno de desarrollo (IDE de Arduino/VSCode + PlatformIO).
 2.  Configure correctamente los pines del ESP32 para la matriz LED y la tarjeta SD.
 3.  Cargue el código al ESP32.
-4.  Suba los archivos estáticos de la interfaz web a la partición **SPIFFS/LittleFS**.
 
 ---
 
