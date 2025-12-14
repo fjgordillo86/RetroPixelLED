@@ -1,1 +1,0 @@
-/gifs/Arcade:/gifs/BEST_OF_TOP_30:/gifs/Computers:/gifs/Consoles:/gifs/Halloween:/gifs/Happy_Birthday:/gifs/logos:/gifs/Movies:/gifs/NEW 2021:/gifs/Other:/gifs/Pinball_Short:/gifs/Pinball_Story:/gifs/Pixel_Art:/gifs/Pixel_Art_Slide:/gifs/Spectrum:/gifs/Spectrum_Slide:/gifs/Test_Suite:/gifs/The_80s_90s:/gifs/XMAS:/gifs/Test:/gifs/Prueba:
