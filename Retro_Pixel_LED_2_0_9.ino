@@ -102,16 +102,15 @@ struct Config {
     bool format24h = true;
     // 3. Configuración del Modo Reloj
     uint32_t clockColor = 0xFF0000;
-    // Rojo
+    // Rojo (por defecto)
     bool showSeconds = true;
     bool showDate = false;
-    // CORREGIDO: 3. Configuración del Modo Texto Deslizante (ahora usa clave corta "slideColor")
+    // 4. Configuración del Modo Texto Deslizante
     uint32_t slidingTextColor = 0x00FF00;
     // Verde (por defecto)
-
-    // 4. Configuración de Hardware/Sistema
-    int panelChain = 2; // MODIFICADO: Valor por defecto de 4 a 2
-    // "Número de Paneles LED (en cadena)"
+    // 5. Configuración de Hardware/Sistema
+    int panelChain = 2; 
+    // "Número de Paneles LED (en Cadena)"
     char device_name[40] = {0};
 };
 Config config;
@@ -135,7 +134,6 @@ void handleFileManager();
 void handleFileUpload();
 void handleFileDelete();
 String fileManagerPage();
-// FIN NUEVAS DECLARACIONES
 
 String webPage();
 String configPage();
@@ -232,7 +230,7 @@ void saveSystemConfig() {
     preferences.putString("timeZone", config.timeZone);
     preferences.putBool("format24h", config.format24h);
     
-    // Configuración del Modo Reloj
+// Configuración del Modo Reloj
     preferences.putULong("clockColor", config.clockColor);
     preferences.putBool("showSeconds", config.showSeconds);
     preferences.putBool("showDate", config.showDate);
@@ -451,7 +449,7 @@ void handleOTAUpload() {
 void notFound() { server.send(404, "text/plain", "Not Found"); }
 
 // ====================================================================
-//                          INTERFAZ WEB PRINCIPAL (VERSION 2.0.0)
+//                          INTERFAZ WEB PRINCIPAL
 // ====================================================================
 
 String webPage() {
@@ -465,7 +463,6 @@ String webPage() {
     html += "input:not([type='checkbox']):not([type='color']),select,button{margin:10px 0;padding:12px;border-radius:8px;border:1px solid #ccc;width:100%;box-sizing:border-box;font-size:16px;}";
     html += ".button-group{display:flex;justify-content:space-between;gap:10px;margin-top:20px;}";
     html += ".button-group button{width:calc(25% - 7px);margin:0;font-weight:bold;color:#fff;border:none;cursor:pointer;padding:12px 0;}";
-    // Nuevo ancho para 4 botones
     html += ".save-btn{background:#2ecc71;}";
     html += ".save-btn:hover{background:#27ae60;}";
     html += ".update-btn{background:#3498db;}";
@@ -474,9 +471,7 @@ String webPage() {
     html += ".config-btn:hover{background:#d35400;}";
     html += ".file-btn{background:#9b59b6;}";
     html += ".file-btn:hover{background:#8e44ad;}";
-    // Nuevo botón de archivos
     html += "label{display:block;margin:15px 0 5px;font-weight:bold;}";
-// Estilo para el porcentaje justificado a la derecha en línea
     html += ".label-brightness{display:flex;justify-content:space-between;align-items:center;margin:15px 0 5px;font-weight:bold;}";
     html += ".brightness-percent{font-size:1em;color:#3498db;}"; 
     html += ".cb label{font-weight:normal;display:block;margin:8px 0;}";
@@ -542,8 +537,8 @@ String webPage() {
     // Grupo de botones en línea (4 botones)
     html += "<div class='button-group'>";
     html += "<button type='submit' class='save-btn'>Guardar</button>"; 
-    html += "<button type='button' class='update-btn' onclick=\"window.location.href='/ota'\">Actualizar</button>"; 
-    html += "<button type='button' class='config-btn' onclick=\"window.location.href='/config'\">Configuración</button>"; 
+    html += "<button type='button' class='update-btn' onclick=\"window.location.href='/ota'\">OTA</button>"; 
+    html += "<button type='button' class='config-btn' onclick=\"window.location.href='/config'\">Ajustes</button>"; 
     html += "<button type='button' class='file-btn' onclick=\"window.location.href='/file_manager'\">Archivos SD</button>";
     html += "</div>";
     html += "</form>";
@@ -573,7 +568,7 @@ String webPage() {
 }
 
 // ====================================================================
-//                      INTERFAZ WEB CONFIGURACIÓN (VERSION 2.0.0)
+//                      INTERFAZ WEB CONFIGURACIÓN
 // ====================================================================
 
 String configPage() {
@@ -618,7 +613,7 @@ String configPage() {
 // Zona Horaria (TZ String)
     html += "<label for='tz'>Zona Horaria (TZ String)</label>";
     html += "<input type='text' id='tz' name='tz' value='" + config.timeZone + "' placeholder='" + String(TZ_STRING_SPAIN) + "'>";
-    // MODIFICADO: Cadena de explicación de la TZ
+// Cadena de explicación de la TZ
     html += "<small>Valor por defecto para España: <code>" + String(TZ_STRING_SPAIN) + "</code>. La gestión del horario de verano/invierno (DST) se hace automáticamente si la cadena TZ es correcta. <a href='https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv' target='_blank'>Más TZ Strings</a></small>";
     
 // Formato de Hora (12h/24h)
@@ -636,7 +631,7 @@ String configPage() {
     // Mostrar Fecha
     html += "<div class='checkbox-group'>";
     html += String("<input type='checkbox' id='sd' name='sd' value='1'") + (config.showDate ? " checked" : "") + ">";
-    html += "<label for='sd'>Mostrar Fecha (Se desliza o alterna)</label></div>";
+    html += "<label for='sd'>Mostrar Fecha (Se desliza)</label></div>";
 
     // ----------------------------------------------------
     // SECCIÓN 2: CONFIGURACIÓN DE COLORES
@@ -674,7 +669,7 @@ String configPage() {
     html += "</div>";
 
 
-    // Pie de página: Intercambio de posiciones
+    // Pie de página
     html += "<div class='footer'>";
     html += "<span>Retro Pixel LED v" + String(FIRMWARE_VERSION) + " by fjgordillo86</span>"; 
     html += "<span><b>IP:</b> " + WiFi.localIP().toString() + "</span>";
@@ -837,7 +832,7 @@ void handleFileManager() {
 
     // Botón de Volver
     if (currentPath != "/") {
-        // Calcular la ruta del padre: quita el último segmento y la barra final
+        // Calcular la ruta: quita el último segmento y la barra final
         String parentPath = currentPath.substring(0, currentPath.lastIndexOf('/', currentPath.length() - 2) + 1);
         
         content += F("<div class='menu'><a href='/file_manager?path=");
@@ -985,7 +980,7 @@ String fileManagerPage() {
 // (Sin cambios funcionales, solo se han corregido los comentarios/citaciones)
 // ====================================================================
 
-// --- 1. Funciones Callback para AnimatedGIF (Sintaxis V1.3.1) ---
+// --- 1. Funciones Callback para AnimatedGIF ---
 
 // Función de dibujo de la librería GIF (necesita estar definida)
 void GIFDraw(GIFDRAW *pDraw)
@@ -1289,7 +1284,6 @@ void listarArchivosGif() {
     archivosGIF.clear();
 
     // 4a. Escanear las carpetas seleccionadas
-    // CORRECCIÓN: Usamos 'config.activeFolders' (era el otro error de compilación)
     for (const String& path : config.activeFolders) { 
         scanGifDirectory(path);
     }
@@ -1454,7 +1448,7 @@ void ejecutarModoReloj() {
     // 1. Cálculo del centrado horizontal (X)
     int xHora = (display->width() - (strlen(timeString) * 12)) / 2;
     
-    // 2. APLICACIÓN DE LA CORRECCIÓN TEMPORAL: EMPUJAR 65px A LA IZQUIERDA
+    // 2. APLICACIÓN DE LA CORRECCIÓN: EMPUJAR 65px A LA IZQUIERDA
     xHora += 65; 
     
     // 3. Dibujo de la hora
