@@ -2,76 +2,114 @@
 
 ## 💡 Descripción del Proyecto
 
-**Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web sencilla.
+**Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web sencilla y potente.
 
-Permite a los usuarios cambiar el **modo de reproducción** (GIFs, Texto Deslizante o Reloj), ajustar el brillo, y modificar la configuración del sistema de manera inalámbrica (OTA). Es ideal para crear pantallas decorativas de estilo retro, relojes digitales, y visualizadores de información personalizables.
+Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante** o un **Reloj sincronizado por NTP**. La versión 2.0.9 introduce un sistema de archivos optimizado para eliminar los tiempos de espera al leer la tarjeta SD.
 
+---
+
+## 🛒 Lista de Materiales
+
+Para garantizar la compatibilidad, se recomienda el uso de los componentes probados durante el desarrollo:
+
+* **Microcontrolador:** [ESP32 DevKit V1 (38 pines) - AliExpress](https://es.aliexpress.com/item/1005005704190069.html)
+* **Panel LED Matrix (HUB75):** [P2.5 / P3 / P4 RGB Matrix Panel - AliExpress](https://es.aliexpress.com/item/1005007439017560.html)
+* **Lector de Tarjetas:** [Módulo Adaptador Micro SD (SPI) - AliExpress](https://es.aliexpress.com/item/1005005591145849.html)
+* **Alimentación:** Fuente de alimentación de 5V (Mínimo 4A recomendado para paneles de 64x32).
+
+---
+
+## 📚 Librerías Necesarias
+
+Para compilar este proyecto correctamente, debes instalar las siguientes librerías. Puedes buscarlas en el Gestor de Librerías de Arduino o descargarlas desde sus repositorios oficiales:
+
+* **[ESP32-HUB75-MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA)**: Control de alto rendimiento para el panel LED mediante DMA.
+* **[AnimatedGIF](https://github.com/bitbank2/AnimatedGIF)**: Decodificador eficiente para la reproducción de archivos GIF desde la SD.
+* **[WiFiManager](https://github.com/tzapu/WiFiManager)**: Gestión de la conexión Wi-Fi mediante un portal cautivo.
+* **[Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)**: Librería base para dibujar texto y formas geométricas.
+* **[ArduinoJson](https://github.com/bblanchon/ArduinoJson)**: Para la gestión de archivos de configuración y comunicación web.
+
+> **Nota:** Las librerías **SD** y **FS** ya vienen integradas por defecto en el paquete de placas (core) de ESP32 para Arduino.
+
+---
+  
 ## 🚀 Características Principales (v2.0.9)
 
 | Característica | Descripción | Estado |
 | :--- | :--- | :--- |
-| **Múltiples Modos** | Reproducción de GIFs, Texto Deslizante (Marquesina) y Reloj NTP. | Estándar |
-| **Gestión de Archivos SD** | Interfaz Web dedicada para subir, listar, borrar y crear directorios en la Micro SD. | **Nuevo (v2.x)** |
-| **Indexación Persistente GIF** | Sistema de caché de archivos para **carga instantánea** del modo GIF, sin escaneo lento de la SD. | **Mejorado (v2.0.9)** |
-| **Filtro de Carpetas UI** | La interfaz web solo lista las subcarpetas del directorio `/gifs` para una selección limpia. | **Nuevo (v2.0.9)** |
-| **Interfaz Web** | Control total de brillo, modos y personalización (colores, velocidad, mensajes). | Estándar |
-| **Actualización Remota (OTA)** | Permite cargar nuevo *firmware* y datos de forma inalámbrica. | Estándar |
+| **Múltiples Modos** | GIFs animados, Texto Deslizante (Marquesina) y Reloj NTP. | Estándar |
+| **Gestión SD Web** | Interfaz para subir, borrar y organizar archivos directamente desde el navegador. | **Nuevo (v2.x)** |
+| **Indexación de Caché** | Carga instantánea de GIFs mediante archivos `.txt` y `.sig`, evitando escaneos lentos. | **Mejorado (v2.0.9)** |
+| **Filtro de Carpetas** | La UI solo muestra subcarpetas dentro del directorio `/gifs` para mayor orden. | **Nuevo (v2.0.9)** |
+| **Actualización OTA** | Carga de nuevo firmware de forma inalámbrica sin conectar el cable USB. | Estándar |
 
 ---
 
 ## ⚙️ Instalación y Configuración
 
-### 1. Requisitos de Hardware
+### 1. Conexiones (Pinout para ESP32 38-pin)
 
-* **Microcontrolador:** ESP32.
-* **Pantalla LED:** Matriz LED compatible con HUB75.
-* **Almacenamiento:** Módulo de Tarjeta Micro SD (SPI) compatible con ESP32.
+#### 📂 Lector de Tarjeta Micro SD (Interfaz SPI)
+| Pin SD | Pin ESP32 | Función |
+| :--- | :--- | :--- |
+| **CS** | GPIO 5 | Chip Select |
+| **SCK** | GPIO 18 | Clock |
+| **MOSI** | GPIO 23 | Master Out Slave In |
+| **MISO** | GPIO 19 | Master In Slave Out |
+| **VCC** | 5V | Alimentación |
+| **GND** | GND | Tierra |
 
-### 2. Librerías de Arduino Necesarias
+#### 🖼️ Matriz LED HUB75
+El panel se conecta mediante el protocolo I2S DMA. Los pines configurados por defecto son:
+* **Líneas de Color:** R1(25), G1(26), B1(27), R2(14), G2(12), B2(13)
+* **Líneas de Escaneo:** A(2), B(15), C(4), D(16)
+* **Sincronización:** LAT(17), OE(33), CLK(22)
+  
+### 2. Preparación de la Tarjeta SD
 
-* `WiFiManager` (Para la gestión de Wi-Fi)
-* `ESP32-HUB75-MatrixPanel-I2S-DMA` (Para la gestión del panel LED)
-* `AnimatedGIF` (Decodificador de GIFs, use el fork compatible con ESP32/SD)
-* `SD` (Núcleo ESP32)
-* Otras librerías estándar del *framework* ESP32 (`Preferences`, `WebServer`, etc.)
+Es fundamental formatear la tarjeta en **FAT32** y mantener la siguiente estructura:
 
-### 3. Preparación de la Tarjeta SD
+```text
+/ (Raíz de la SD)
+├── gifs/ 
+│   ├── Arcade/      <-- GIFs organizados por categorías
+│   └── Consolas/    <-- GIFs organizados por categorías
+├── gif_cache.txt    <-- Generado automáticamente (Índice de rutas)
+└── gif_cache.sig    <-- Generado automáticamente (Firma de validación)
+```
 
-El *firmware* ahora requiere una estructura de directorios clara para el modo GIF:
+[!IMPORTANTE] Límite de archivos: Se recomienda no superar los 100-150 GIFs por subcarpeta. Superar este límite puede agotar la memoria RAM del ESP32 durante la generación de la interfaz web de selección.
 
-1.  Formatee la tarjeta Micro SD como **FAT32**.
-2.  Cree el directorio base: **`/gifs`** en la raíz.
-3.  Cree sus colecciones como **subcarpetas** dentro de `/gifs` (ej., `/gifs/Arcade`, `/gifs/Consolas`).
+### 3. Gestión mediante Servidor Web (Web UI)
 
-**Estructura de la SD Requerida:**
-├── gifs/ │ ├── Arcade/ <-- Aquí van los GIFs │ └── Consolas/ <-- Aquí van los GIFs ├── gif_cache.txt <-- Generado por el firmware (Índice) └── gif_cache.sig <-- Generado por el firmware (Firma de validación)
-### 4. Carga Inicial
+El firmware levanta un servidor web interno en el ESP32 que permite gestionar el dispositivo desde cualquier navegador (móvil o PC) conectado a la misma red:
 
-1.  Abra el proyecto en su entorno de desarrollo (IDE de Arduino/VSCode + PlatformIO).
-2.  Configure correctamente los pines del ESP32 para la matriz LED y la tarjeta SD.
-3.  Cargue el código al ESP32.
+* **Control en Tiempo Real:** Cambia entre los modos GIF, Reloj o Texto de forma instantánea.
+* **Ajuste de Brillo:** Deslizador para controlar la intensidad lumínica del panel.
+* **Personalización:** Configura los mensajes de la marquesina, colores y velocidad de desplazamiento.
+* **Explorador de Archivos:** Sube nuevos GIFs a la SD, crea carpetas o borra archivos sin necesidad de extraer la tarjeta Micro SD.
+* **Configuración de Red:** Acceso al panel de gestión de Wi-Fi para cambiar de red si es necesario.
 
----
+> **Nota:** Para acceder, simplemente introduce la dirección IP que el ESP32 muestra en el monitor serie (o la que verás en el panel en futuras versiones) en la barra de direcciones de tu navegador.
 
-## 🌐 Uso y Optimización (v2.0.9)
+## 🌐 Optimización de Rendimiento (Caché)
+Para evitar que el ESP32 escanee toda la tarjeta SD en cada inicio (lo cual es lento), el sistema utiliza un mecanismo de Firma de Validación:
 
-### 1. Configuración del Modo GIF y Caché
+El usuario selecciona las carpetas activas en la interfaz web.
+El sistema crea una firma única en gif_cache.sig.
+Si al reiniciar las carpetas seleccionadas no han cambiado, el ESP32 lee directamente las rutas desde gif_cache.txt de forma instantánea.
 
-La principal mejora de rendimiento se gestiona a través de la interfaz web:
+## 🛠️ Próximas Mejoras (Roadmap)
 
-1.  Acceda a la dirección IP del ESP32.
-2.  Navegue a la sección **"Configuración de Modos"**.
-3.  En la configuración del Modo GIF, la interfaz web mostrará **SOLO las subcarpetas** dentro de `/gifs` (gracias al filtro en `scanFolders`).
-4.  **Seleccione las carpetas** que desea incluir en la reproducción y guarde la configuración.
-
-#### ⏱️ Mecanismo de Caché (Rendimiento Instantáneo)
-
-* **Validación:** El sistema genera una "firma" única de las carpetas seleccionadas.
-* **Reconstrucción:** Solo si la firma actual no coincide con la guardada en `/gif_cache.sig`, el sistema realizará el escaneo lento de la SD para reconstruir el índice de GIFs en `/gif_cache.txt`.
-* **Carga Rápida:** Si la firma es válida, la lista de GIFs se carga instantáneamente desde `/gif_cache.txt`.
+* **🌐 Notificación de Conexión:** Mostrar la dirección IP asignada en el panel LED automáticamente al conectarse a la red Wi-Fi por primera vez.
+* **🎮 Control por Infrarrojos (IR):** Soporte para mandos a distancia para encendido/apagado, cambio de modo y ajuste de brillo.
+* **🏠 Integración Domótica:** Implementación de API REST o MQTT para control desde Home Assistant.
+* **💤 Modo de Reposo:** Implementación de ahorro de energía (Light Sleep) para reducir el consumo cuando el panel no esté en uso.
 
 ## ⚖️ Licencia y Agradecimientos
+Este proyecto se publica bajo la Licencia MIT. Consulta el archivo `LICENSE` para conocer los términos completos.
 
-Este proyecto de *firmware* se publica bajo la **Licencia MIT**.
-
-Agradecemos a los desarrolladores de las librerías mencionadas, cuyo trabajo bajo licencias permisivas (principalmente **MIT**) hace posible este proyecto. Consulta el archivo `LICENSE` para conocer los términos completos.
+Agradecimientos especiales a los desarrolladores de:
+* ESP32-HUB75-MatrixPanel-I2S-DMA
+* AnimatedGIF
+* WiFiManager
