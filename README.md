@@ -105,6 +105,7 @@ Si al reiniciar las carpetas seleccionadas no han cambiado, el ESP32 lee directa
 * **🎮 Control por Infrarrojos (IR):** Soporte para mandos a distancia para encendido/apagado, cambio de modo y ajuste de brillo.
 * **🏠 Integración Domótica:** Implementación de API REST o MQTT para control desde Home Assistant.
 * **💤 Modo de Reposo:** Implementación de ahorro de energía (Light Sleep) para reducir el consumo cuando el panel no esté en uso.
+* **🔌 Integración con Frontends:** Implementación de API HTTP/REST para permitir que programas externos (RetroPie, LaunchBox) cambien el GIF automáticamente al iniciar un juego.
 
 ## ⚖️ Licencia y Agradecimientos
 Este proyecto se publica bajo la Licencia MIT. Consulta el archivo `LICENSE` para conocer los términos completos.
