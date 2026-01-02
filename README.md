@@ -56,8 +56,8 @@ Para compilar este proyecto correctamente, debes instalar las siguientes librer�
 | **SCK** | GPIO 18 | Clock |
 | **MOSI** | GPIO 23 | Master Out Slave In |
 | **MISO** | GPIO 19 | Master In Slave Out |
-| **VCC** | 5V | Alimentación |
-| **GND** | GND | Tierra |
+| **VCC** | 3.3V | Alimentación |
+| **GND** | GND | GND |
 
 #### 🖼️ Matriz LED HUB75
 El panel se conecta mediante el protocolo I2S DMA. Los pines configurados por defecto son:
