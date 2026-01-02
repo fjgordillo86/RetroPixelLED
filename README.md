@@ -59,11 +59,23 @@ Para compilar este proyecto correctamente, debes instalar las siguientes librer�
 | **VCC** | 3.3V | Alimentación |
 | **GND** | GND | GND |
 
-#### 🖼️ Matriz LED HUB75
-El panel se conecta mediante el protocolo I2S DMA. Los pines configurados por defecto son:
-* **Líneas de Color:** R1(25), G1(26), B1(27), R2(14), G2(12), B2(13)
-* **Líneas de Escaneo:** A(2), B(15), C(4), D(16)
-* **Sincronización:** LAT(17), OE(33), CLK(22)
+#### 🖼️ Panel LED RGB (Interfaz HUB75)
+| Pin Panel | Pin ESP32 | Función |
+| :--- | :--- | :--- |
+| **R1** | GPIO 25 | Datos Rojo (Superior) |
+| **G1** | GPIO 26 | Datos Verde (Superior) |
+| **B1** | GPIO 27 | Datos Azul (Superior) |
+| **R2** | GPIO 14 | Datos Rojo (Inferior) |
+| **G2** | GPIO 12 | Datos Verde (Inferior) |
+| **B2** | GPIO 13 | Datos Azul (Inferior) |
+| **A** | GPIO 2 | Selección de Fila A |
+| **B** | GPIO 15 | Selección de Fila B |
+| **C** | GPIO 4 | Selección de Fila C |
+| **D** | GPIO 16 | Selección de Fila D |
+| **CLK** | GPIO 22 | Clock |
+| **LAT** | GPIO 17 | Latch |
+| **OE** | GPIO 33 | Output Enable (Brillo) |
+| **GND** | GND | GND |
   
 ### 2. Preparación de la Tarjeta SD
 
