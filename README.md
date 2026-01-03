@@ -7,49 +7,6 @@
 Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante** o un **Reloj sincronizado por NTP**. La versión 2.0.9 introduce un sistema de archivos optimizado para eliminar los tiempos de espera al leer la tarjeta SD.
 
 ---
-## 🚀 Instalación Rápida (Recomendado)
-
-Ya no es necesario instalar Arduino IDE ni configurar librerías manualmente. Puedes programar tu ESP32 directamente desde el navegador.
-
-### **[👉 ABRIR INSTALADOR WEB RETRO PIXEL LED](https://fjgordillo86.github.io/RetroPixelLED/)**
-
-**Pasos para la instalación:**
-1. Utiliza un navegador compatible (**Google Chrome** o **Microsoft Edge**).
-2. Conecta tu ESP32 al puerto USB del ordenador.
-3. Haz clic en el botón **"Install"** de la web y selecciona el puerto COM correspondiente.
-4. **IMPORTANTE:** Si es la primera vez que instalas la v2.0.9, asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
-
-> 💡 **¿No reconoce tu ESP32?**
-> Si al pulsar "Install" no aparece ningún puerto COM, es probable que necesites instalar los drivers del chip USB de tu placa:
-> * **Chip CP2102:** [Descargar Drivers Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
-> * **Chip CH340/CH341:** [Descargar Drivers SparkFun](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
-
----
-
-## 🛒 Lista de Materiales
-
-Para garantizar la compatibilidad, se recomienda el uso de los componentes probados durante el desarrollo:
-
-* **Microcontrolador:** [ESP32 DevKit V1 (38 pines) - AliExpress](https://es.aliexpress.com/item/1005005704190069.html)
-* **Panel LED Matrix (HUB75):** [P2.5 / P3 / P4 RGB Matrix Panel - AliExpress](https://es.aliexpress.com/item/1005007439017560.html)
-* **Lector de Tarjetas:** [Módulo Adaptador Micro SD (SPI) - AliExpress](https://es.aliexpress.com/item/1005005591145849.html)
-* **Alimentación:** Fuente de alimentación de 5V (Mínimo 4A recomendado para paneles de 64x32).
-
----
-
-## 📚 Librerías Necesarias
-
-Para compilar este proyecto correctamente, debes instalar las siguientes librerías. Puedes buscarlas en el Gestor de Librerías de Arduino o descargarlas desde sus repositorios oficiales:
-
-* **[ESP32-HUB75-MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA)**: Control de alto rendimiento para el panel LED mediante DMA.
-* **[AnimatedGIF](https://github.com/bitbank2/AnimatedGIF)**: Decodificador eficiente para la reproducción de archivos GIF desde la SD.
-* **[WiFiManager](https://github.com/tzapu/WiFiManager)**: Gestión de la conexión Wi-Fi mediante un portal cautivo.
-* **[Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)**: Librería base para dibujar texto y formas geométricas.
-* **[ArduinoJson](https://github.com/bblanchon/ArduinoJson)**: Para la gestión de archivos de configuración y comunicación web.
-
-> **Nota:** Las librerías **SD** y **FS** ya vienen integradas por defecto en el paquete de placas (core) de ESP32 para Arduino.
-
----
   
 ## 🚀 Características Principales (v2.0.9)
 
@@ -63,9 +20,50 @@ Para compilar este proyecto correctamente, debes instalar las siguientes librer�
 
 ---
 
+## 🛒 Lista de Materiales
+
+Para garantizar la compatibilidad, se recomienda el uso de los componentes probados durante el desarrollo:
+
+* **Microcontrolador:** [ESP32 DevKit V1 (38 pines) - AliExpress](https://es.aliexpress.com/item/1005005704190069.html)
+* **Panel LED Matrix (HUB75):** [P2.5 / P3 / P4 RGB Matrix Panel - AliExpress](https://es.aliexpress.com/item/1005007439017560.html)
+* **Lector de Tarjetas:** [Módulo Adaptador Micro SD (SPI) - AliExpress](https://es.aliexpress.com/item/1005005591145849.html)
+* **Placa conexión ESP32-Panel LED (Opcional pero facilita mucho ya que no hay que soldar nada y tiene lector SD incroporado):** [DMDos Board V3 - Mortaca ](https://www.mortaca.com/) 
+* **Alimentación:** Fuente de alimentación de 5V (Mínimo 4A recomendado para paneles de 64x32).
+
+---
+
+## 📚 Librerías Necesarias
+
+En el caso de querer compilar y programar el proyecto dede Arduino IDE correctamente, debes instalar las siguientes librerías. Puedes buscarlas en el Gestor de Librerías de Arduino o descargarlas desde sus repositorios oficiales:
+
+* **[ESP32-HUB75-MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA)**: Control de alto rendimiento para el panel LED mediante DMA.
+* **[AnimatedGIF](https://github.com/bitbank2/AnimatedGIF)**: Decodificador eficiente para la reproducción de archivos GIF desde la SD.
+* **[WiFiManager](https://github.com/tzapu/WiFiManager)**: Gestión de la conexión Wi-Fi mediante un portal cautivo.
+* **[Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)**: Librería base para dibujar texto y formas geométricas.
+* **[ArduinoJson](https://github.com/bblanchon/ArduinoJson)**: Para la gestión de archivos de configuración y comunicación web.
+
+> **Nota:** Las librerías **SD** y **FS** ya vienen integradas por defecto en el paquete de placas (core) de ESP32 para Arduino.
+
+
 ## ⚙️ Instalación y Configuración
 
-### 1. Conexiones (Pinout para ESP32 38-pin)
+### 1. 🚀 Programar el ESP32
+Ya no es necesario instalar Arduino IDE ni configurar librerías manualmente. Puedes programar tu ESP32 directamente desde el navegador.
+
+### **[👉 Abrir instalador web RETRO PIXEL LED](https://fjgordillo86.github.io/RetroPixelLED/)**
+
+**Pasos para la instalación:**
+1. Utiliza un navegador compatible (**Google Chrome** o **Microsoft Edge**).
+2. Conecta tu ESP32 al puerto USB del ordenador.
+3. Haz clic en el botón **"Install"** de la web y selecciona el puerto COM correspondiente.
+4. **IMPORTANTE:** Si es la primera vez que instalas la v2.0.9, asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
+
+> 💡 **¿No reconoce tu ESP32?**
+> Si al pulsar "Install" no aparece ningún puerto COM, es probable que necesites instalar los drivers del chip USB de tu placa:
+> * **Chip CP2102:** [Descargar Drivers Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
+> * **Chip CH340/CH341:** [Descargar Drivers SparkFun](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+
+### 2. 🔌 Conexiones (Si utilizas DMDos Board V3 esta parte ya la tienes, salta al siguiente punto)
 
 #### 📂 Lector de Tarjeta Micro SD (Interfaz SPI)
 | Pin SD | Pin ESP32 | Función |
@@ -95,7 +93,7 @@ Para compilar este proyecto correctamente, debes instalar las siguientes librer�
 | **OE** | GPIO 33 | Output Enable (Brillo) |
 | **GND** | GND | GND |
   
-### 2. Preparación de la Tarjeta SD
+### 3. 📂 Preparación de la Tarjeta SD
 
 Es fundamental formatear la tarjeta en **FAT32** y mantener la siguiente estructura:
 
@@ -110,17 +108,27 @@ Es fundamental formatear la tarjeta en **FAT32** y mantener la siguiente estruct
 
 [!IMPORTANTE] Límite de archivos: Se recomienda no superar los 100-150 GIFs por subcarpeta. Superar este límite puede agotar la memoria RAM del ESP32 durante la generación de la interfaz web de selección.
 
-### 3. Gestión mediante Servidor Web (Web UI)
+### 4. 🌐 Configuración Inicial y Conexión Wi-Fi
 
-El firmware levanta un servidor web interno en el ESP32 que permite gestionar el dispositivo desde cualquier navegador (móvil o PC) conectado a la misma red:
+Si es la primera vez que usas el dispositivo o si has cambiado de red, el **Retro Pixel LED** entrará en modo de configuración automática:
 
-* **Control en Tiempo Real:** Cambia entre los modos GIF, Reloj o Texto de forma instantánea.
-* **Ajuste de Brillo:** Deslizador para controlar la intensidad lumínica del panel.
-* **Personalización:** Configura los mensajes de la marquesina, colores y velocidad de desplazamiento.
-* **Explorador de Archivos:** Sube nuevos GIFs a la SD, crea carpetas o borra archivos sin necesidad de extraer la tarjeta Micro SD.
-* **Configuración de Red:** Acceso al panel de gestión de Wi-Fi para cambiar de red si es necesario.
+1.  **Conexión al Punto de Acceso:** Busca en tu smartphone o PC una red Wi-Fi llamada `Retro Pixel LED`. (No requiere contraseña).
+2.  **Portal Cautivo:** Una vez conectado, el navegador debería abrirse automáticamente. Si no lo hace, accede a la dirección `192.168.4.1`.
+3.  **Configurar Wi-Fi:** Pulsa en "Configure WiFi", selecciona tu red doméstica, introduce la contraseña y guarda. El ESP32 se reiniciará y se conectará a tu red local.
 
-> **Nota:** Para acceder, simplemente introduce la dirección IP que el ESP32 muestra en el monitor serie (o la que verás en el panel en futuras versiones) en la barra de direcciones de tu navegador.
+### 5. 🖥️ Gestión mediante Servidor Web (Web UI)
+
+Una vez que el dispositivo esté en tu red local, puedes acceder a su panel de control introduciendo su dirección IP en el navegador.
+
+> **💡 Cómo encontrar la IP:** > * Se muestra en el **Monitor Serie** al arrancar.
+> * Aparecerá en el propio **Panel LED** tras la conexión (en próximas versiones).
+
+### Funcionalidades Disponibles:
+* **🕹️ Control en Tiempo Real:** Cambia de modo entre **GIF**, **Reloj** o **Marquesina** al instante.
+* **☀️ Brillo Inteligente:** Ajusta la intensidad de los LEDs (0-255).
+* **📁 Explorador de Archivos SD:** Sube, borra o crea carpetas para tus GIFs sin sacar la tarjeta Micro SD.
+* **✍️ Editor de Texto:** Cambia el mensaje de la marquesina, colores y velocidad de desplazamiento.
+* **🛠️ Actualización OTA:** Instala nuevas versiones del firmware de forma inalámbrica.
 
 ## 🌐 Optimización de Rendimiento (Caché)
 Para evitar que el ESP32 escanee toda la tarjeta SD en cada inicio (lo cual es lento), el sistema utiliza un mecanismo de Firma de Validación:
@@ -131,11 +139,18 @@ Si al reiniciar las carpetas seleccionadas no han cambiado, el ESP32 lee directa
 
 ## 🛠️ Próximas Mejoras (Roadmap)
 
+### ✅ Implementado en v2.1.0 (Próximamente)
+* **🧠 Arquitectura Dual Core (FreeRTOS):** Separación total de procesos mediante multitarea real. 
+    * **Núcleo 0:** Gestiona la conectividad Wi-Fi, el servidor Web y las peticiones de red.
+    * **Núcleo 1:** Dedicado exclusivamente al refresco de la matriz LED y decodificación de GIFs, eliminando cualquier parpadeo o "lag" visual.
+* **🚀 Optimización de Rendimiento:** Uso de `vTaskDelay` con (`pdMS_TO_TICKS`) para garantizar la estabilidad del Watchdog del sistema.
+
+### 🚀 En Desarrollo / Próximamente
+* **🏠 Integración Nativa con Home Assistant:** Implementación de **MQTT Discovery**. El panel aparecerá automáticamente como un dispositivo de luz y selector de modos en HA, aprovechando la libertad de procesamiento del Núcleo 0.
+* **🎮 Soporte para Batocera/RetroPie:** Integración mediante scripts *game-start* para cambiar el GIF del panel automáticamente según el juego seleccionado en el Frontend (vía API HTTP).
 * **🌐 Notificación de Conexión:** Mostrar la dirección IP asignada en el panel LED automáticamente al conectarse a la red Wi-Fi por primera vez.
-* **🎮 Control por Infrarrojos (IR):** Soporte para mandos a distancia para encendido/apagado, cambio de modo y ajuste de brillo.
-* **🏠 Integración Domótica:** Implementación de API REST o MQTT para control desde Home Assistant.
-* **💤 Modo de Reposo:** Implementación de ahorro de energía (Light Sleep) para reducir el consumo cuando el panel no esté en uso.
-* **🔌 Integración con Frontends:** Implementación de API HTTP/REST para permitir que programas externos (Batocera) cambien el GIF automáticamente al iniciar un juego.
+* **🎮 Control por Infrarrojos (IR):** Soporte para mandos a distancia para control físico (Encendido/Brillo/Modos).
+* **💤 Gestión de Energía:** Implementación de modo *Sleep* y apagado programado para prolongar la vida útil de los paneles LED.
 
 ## ⚖️ Licencia y Agradecimientos
 Este proyecto se publica bajo la Licencia MIT. Consulta el archivo `LICENSE` para conocer los términos completos.
