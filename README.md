@@ -7,6 +7,24 @@
 Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante** o un **Reloj sincronizado por NTP**. La versión 2.0.9 introduce un sistema de archivos optimizado para eliminar los tiempos de espera al leer la tarjeta SD.
 
 ---
+## 🚀 Instalación Rápida (Recomendado)
+
+Ya no es necesario instalar Arduino IDE ni configurar librerías manualmente. Puedes programar tu ESP32 directamente desde el navegador.
+
+### **[👉 ABRIR INSTALADOR WEB RETRO PIXEL LED](https://fjgordillo86.github.io/RetroPixelLED/)**
+
+**Pasos para la instalación:**
+1. Utiliza un navegador compatible (**Google Chrome** o **Microsoft Edge**).
+2. Conecta tu ESP32 al puerto USB del ordenador.
+3. Haz clic en el botón **"Install"** de la web y selecciona el puerto COM correspondiente.
+4. **IMPORTANTE:** Si es la primera vez que instalas la v2.0.9, asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
+
+> 💡 **¿No reconoce tu ESP32?**
+> Si al pulsar "Install" no aparece ningún puerto COM, es probable que necesites instalar los drivers del chip USB de tu placa:
+> * **Chip CP2102:** [Descargar Drivers Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
+> * **Chip CH340/CH341:** [Descargar Drivers SparkFun](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+
+---
 
 ## 🛒 Lista de Materiales
 
@@ -117,7 +135,7 @@ Si al reiniciar las carpetas seleccionadas no han cambiado, el ESP32 lee directa
 * **🎮 Control por Infrarrojos (IR):** Soporte para mandos a distancia para encendido/apagado, cambio de modo y ajuste de brillo.
 * **🏠 Integración Domótica:** Implementación de API REST o MQTT para control desde Home Assistant.
 * **💤 Modo de Reposo:** Implementación de ahorro de energía (Light Sleep) para reducir el consumo cuando el panel no esté en uso.
-* **🔌 Integración con Frontends:** Implementación de API HTTP/REST para permitir que programas externos (RetroPie, LaunchBox) cambien el GIF automáticamente al iniciar un juego.
+* **🔌 Integración con Frontends:** Implementación de API HTTP/REST para permitir que programas externos (Batocera) cambien el GIF automáticamente al iniciar un juego.
 
 ## ⚖️ Licencia y Agradecimientos
 Este proyecto se publica bajo la Licencia MIT. Consulta el archivo `LICENSE` para conocer los términos completos.
