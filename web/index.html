@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Instalador Retro Pixel LED</title>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; background: #1a1a1a; color: white; }
+    .container { border: 1px solid #444; padding: 20px; border-radius: 10px; display: inline-block; background: #222; }
+    h1 { color: #00ff99; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Retro Pixel LED 🕹️</h1>
+    <p>Conecta tu ESP32 por USB y pulsa el botón para programar:</p>
+    <esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
+  </div>
+</body>
+</html>
