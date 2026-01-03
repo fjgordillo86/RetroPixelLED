@@ -1,0 +1,12 @@
+{
+  "name": "Retro Pixel LED",
+  "version": "2.0.9",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "nombre_de_tu_archivo.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
