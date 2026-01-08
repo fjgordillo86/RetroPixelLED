@@ -1,4 +1,4 @@
-# ✨ Retro Pixel LED v2.0.9
+# ✨ Retro Pixel LED v2.1.0
 
 ## 💡 Descripción del Proyecto
 
@@ -6,15 +6,16 @@
 Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante** o un **Reloj sincronizado por NTP**
 
 ---
-## 🚀 Características Principales (v2.0.9)
+## 🚀 Características Principales (v2.1.0)
 
 | Característica | Descripción | Estado |
 | :--- | :--- | :--- |
-| **Múltiples Modos** | GIFs animados, Texto Deslizante (Marquesina) y Reloj NTP. | Estándar |
-| **Gestión SD Web** | Interfaz para subir, borrar y organizar archivos directamente desde el navegador. | **Nuevo (v2.x)** |
-| **Indexación de Caché** | Carga instantánea de GIFs mediante archivos `.txt` y `.sig`, evitando escaneos lentos. | **Mejorado (v2.0.9)** |
-| **Filtro de Carpetas** | La UI solo muestra subcarpetas dentro del directorio `/gifs` para mayor orden. | **Nuevo (v2.0.9)** |
-| **Actualización OTA** | Carga de nuevo firmware de forma inalámbrica sin conectar el cable USB. | Estándar |
+| **🧠 Dual Core Engine** | **Núcleo 1** dedicado a los LEDs y **Núcleo 0** a la red. Cero parpadeos. | **Nuevo** |
+| **🛡️ Sistema Mutex** | Uso de semáforos para evitar conflictos de lectura en la tarjeta SD. | **Nuevo** |
+| **🏠 Home Assistant** | Integración total mediante **MQTT Discovery**. Autodetectable. | **Nuevo** |
+| **📁 FileManager Pro** | Gestor de archivos web con soporte para carpetas y subida masiva. | **Mejorado** |
+| **⚡ Activar/Desactivar Matriz** | Botón para encender y apagar el panel LED. | **Nuevo** |
+| **🌐 Notificación de Conexión** | Mostrar la dirección IP asignada en el panel LED automáticamente al conectarse a la red Wi-Fi por primera vez. | **Nuevo** |
 
 ---
 
@@ -72,7 +73,7 @@ Ya no es necesario instalar Arduino IDE ni configurar librerías manualmente. Pu
 1. Utiliza un navegador compatible (**Google Chrome** o **Microsoft Edge**).
 2. Conecta tu ESP32 al puerto USB del ordenador.
 3. Haz clic en el botón **"Install"** de la web y selecciona el puerto COM correspondiente.
-4. **IMPORTANTE:** Si es la primera vez que instalas la v2.0.9, asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
+4. **IMPORTANTE:** Si es la primera vez que instalas la v2.1.0, asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
 
 > 💡 **¿No reconoce tu ESP32?**
 > Si al pulsar "Install" no aparece ningún puerto COM, es probable que necesites instalar los drivers del chip USB de tu placa:
@@ -106,14 +107,14 @@ Si es la primera vez que usas el dispositivo o si has cambiado de red, el **Retr
 
 Una vez que el dispositivo esté en tu red local, puedes acceder a su panel de control introduciendo su dirección IP en el navegador.
 
-> **💡 Cómo encontrar la IP:** > * Se muestra en el **Monitor Serie** al arrancar.
-> * Aparecerá en el propio **Panel LED** tras la conexión (en próximas versiones).
+> **💡 Cómo encontrar la IP:** > * Se muestra en el **Monitor Serie** al arrancar y en el propio **Panel LED** tras la primera conexión
 
 ### Funcionalidades Disponibles:
 * **🕹️ Control en Tiempo Real:** Cambia de modo entre **GIF**, **Reloj** o **Marquesina** al instante.
 * **☀️ Brillo Inteligente:** Ajusta la intensidad de los LEDs (0-255).
 * **📁 Explorador de Archivos SD:** Sube, borra o crea carpetas para tus GIFs sin sacar la tarjeta Micro SD.
 * **✍️ Editor de Texto:** Cambia el mensaje de la marquesina, colores y velocidad de desplazamiento.
+* **🏠 Home Assistant:** Manejo de todas las funciones disponibles desde Home Assistant.
 * **🛠️ Actualización OTA:** Instala nuevas versiones del firmware de forma inalámbrica.
 
 ## 🌐 Optimización de Rendimiento (Caché)
@@ -125,17 +126,11 @@ Si al reiniciar las carpetas seleccionadas no han cambiado, el ESP32 lee directa
 
 ## 🛠️ Próximas Mejoras (Roadmap)
 
-### ✅ Implementado en v2.1.0 (Próximamente)
-* **🧠 Arquitectura Dual Core (FreeRTOS):** Separación total de procesos mediante multitarea real. 
-    * **Núcleo 0:** Gestiona la conectividad Wi-Fi, el servidor Web y las peticiones de red.
-    * **Núcleo 1:** Dedicado exclusivamente al refresco de la matriz LED y decodificación de GIFs, eliminando cualquier parpadeo o "lag" visual.
-* **🚀 Optimización de Rendimiento:** Uso de `vTaskDelay` con (`pdMS_TO_TICKS`) para garantizar la estabilidad del Watchdog del sistema.
-
 ### 🚀 En Desarrollo / Próximamente
-* **🏠 Integración Nativa con Home Assistant:** Implementación de **MQTT Discovery**. El panel aparecerá automáticamente como un dispositivo de luz y selector de modos en HA, aprovechando la libertad de procesamiento del Núcleo 0.
 * **🎮 Soporte para Batocera/RetroPie:** Integración mediante scripts *game-start* para cambiar el GIF del panel automáticamente según el juego seleccionado en el Frontend (vía API HTTP).
-* **🌐 Notificación de Conexión:** Mostrar la dirección IP asignada en el panel LED automáticamente al conectarse a la red Wi-Fi por primera vez.
-* **🎮 Control por Infrarrojos (IR):** Soporte para mandos a distancia para control físico (Encendido/Brillo/Modos).
+* **🕔 Mejoras en la función Reloj:** Distintos diseños de reloj a elegir desde la WEB.
+* **📡 Mejoras en la función Text:** Distintos tamaños de letra...
+* **✍️ Control por Infrarrojos (IR):** Soporte para mandos a distancia para control físico (Encendido/Brillo/Modos).
 * **💤 Gestión de Energía:** Implementación de modo *Sleep* y apagado programado para prolongar la vida útil de los paneles LED.
 
 ## 📚 Librerías Necesarias
