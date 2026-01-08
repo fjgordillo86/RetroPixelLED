@@ -10,7 +10,7 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 
 | Característica | Descripción | Estado |
 | :--- | :--- | :--- |
-| **🧠 Dual Core Engine** | **Núcleo 1** dedicado a los LEDs y **Núcleo 0** a la red. Cero parpadeos. | **Nuevo** |
+| **🧠 Dual Core Engine** | **Núcleo 1** dedicado a los LEDs y **Núcleo 0** a la red. Evitar parpadeos. | **Nuevo** |
 | **🛡️ Sistema Mutex** | Uso de semáforos para evitar conflictos de lectura en la tarjeta SD. | **Nuevo** |
 | **🏠 Home Assistant** | Integración total mediante **MQTT Discovery**. Autodetectable. | **Nuevo** |
 | **📁 FileManager Pro** | Gestor de archivos web con soporte para carpetas y subida masiva. | **Mejorado** |
