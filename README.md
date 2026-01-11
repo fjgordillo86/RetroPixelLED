@@ -1,4 +1,4 @@
-# ✨ Retro Pixel LED v2.1.0
+# ✨ Retro Pixel LED v2.1.9
 
 ## 💡 Descripción del Proyecto
 
