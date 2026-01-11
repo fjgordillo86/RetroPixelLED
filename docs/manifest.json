@@ -1,6 +1,6 @@
 {
   "name": "Retro Pixel LED",
-  "version": "2.1.0",
+  "version": "2.1.9",
   "new_install_prompt_erase": true,
   "builds": [
     {
