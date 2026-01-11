@@ -461,7 +461,6 @@ uint32_t parseHexColor(String hex) {
 // --- Rutas del Servidor ---
 void handleRoot() {
     enModoGestion = false; // Al entrar al inicio, liberamos el panel para que muestre GIFs
-    scanFolders(GIFS_BASE_PATH); // Escaneamos las carpetas para asegurar que la UI tenga qué mostrar
     server.send(200, "text/html", webPage());
 }
 
@@ -2006,7 +2005,9 @@ void setup() {
         }
         
         if (config.playMode == 0) {
-            listarArchivosGif();
+            // Activamos la bandera para que el loop() lo haga en segundo plano.
+            recargarGifsPendiente = true; 
+            Serial.println("Carga de GIFs programada...");
         }
         delay(1000);
     } else {
