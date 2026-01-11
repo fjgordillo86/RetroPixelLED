@@ -40,7 +40,7 @@ Si utilizas DMDos Board V3 esta parte ya la tienes, salta al siguiente punto.
 | Pin SD | Pin ESP32 | Función |
 | :--- | :--- | :--- |
 | **CS** | GPIO 5 | Chip Select |
-| **SCK** | GPIO 18 | Clock |
+| **CLK** | GPIO 18 | Clock |
 | **MOSI** | GPIO 23 | Master Out Slave In |
 | **MISO** | GPIO 19 | Master In Slave Out |
 | **VCC** | 3.3V | Alimentación |
@@ -55,14 +55,15 @@ Si utilizas DMDos Board V3 esta parte ya la tienes, salta al siguiente punto.
 | **R2** | GPIO 14 | Datos Rojo (Inferior) |
 | **G2** | GPIO 12 | Datos Verde (Inferior) |
 | **B2** | GPIO 13 | Datos Azul (Inferior) |
-| **A** | GPIO 2 | Selección de Fila A |
-| **B** | GPIO 15 | Selección de Fila B |
-| **C** | GPIO 4 | Selección de Fila C |
-| **D** | GPIO 16 | Selección de Fila D |
-| **CLK** | GPIO 22 | Clock |
-| **LAT** | GPIO 17 | Latch |
-| **OE** | GPIO 33 | Output Enable (Brillo) |
-| **GND** | GND | GND |
+| **A** | GPIO 33 | Selección de Fila A |
+| **B** | GPIO 32 | Selección de Fila B |
+| **C** | GPIO 22 | Selección de Fila C |
+| **D** | GPIO 17 | Selección de Fila D |
+| **E** | GND | GND |
+| **CLK** | GPIO 16 | Clock |
+| **LAT** | GPIO 4 | Latch |
+| **OE** | GPIO 15 | Output Enable (Brillo) |
+
 
 ### 2. 🚀 Programar el ESP32
 Ya no es necesario instalar Arduino IDE ni configurar librerías manualmente. Puedes programar tu ESP32 directamente desde el navegador.
