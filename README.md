@@ -3,7 +3,7 @@
 ## 💡 Descripción del Proyecto
 
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web sencilla y potente.
-Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante** o un **Reloj sincronizado por NTP**
+Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**
 
 ---
 ## 🚀 Características Principales (v2.1.9)
@@ -297,4 +297,4 @@ Agradecimientos especiales a los desarrolladores de:
 * ESP32-HUB75-MatrixPanel-I2S-DMA
 * AnimatedGIF
 * WiFiManager
-* Grupo Telgram DMDos
+* Grupo Telgram DMDos por su gran recopilación de GIFs.
