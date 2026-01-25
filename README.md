@@ -1,22 +1,29 @@
-# ✨ Retro Pixel LED v2.1.9
+# ✨ Retro Pixel LED v2.2.9
 
 ## 💡 Descripción del Proyecto
 
-**Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web sencilla y potente.
-Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**
+**Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
+Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **2.2.9** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**.
+
+## 🚀 Novedades de la Versión 2.2.9 (¡Lo nuevo!)
+
+| Característica | Detalle Técnico | Beneficio |
+| :--- | :--- | :--- |
+| **💎 Panel 100% Estable** | Eliminación de "píxeles locos" mediante optimización de tiempos I2S. | Visualización perfecta sin glitches. |
+| **🌐 WiFi Inteligente** | Modo de funcionamiento híbrido (Online/Offline) configurable. | El panel funciona con o sin conexión a internet. |
+| **🛠️ Hardware Pro** | Ajuste de velocidad I2S, Refresh Rate y Latch Blanking. | Control total anti-ghosting desde la interfaz Web. |
+| **🕔 Reloj Next-Gen** | 8 estilos visuales (Matrix, Rainbow, Neon, Pulse, Gradient...). | Estética premium con colores personalizables. |
+| **🏠 HA Full Control** | Integración total vía MQTT (Modos, Colores, Texto, Brillo). | Control absoluto desde Dashboards o Automatizaciones. |
+| **🌦️ Dashboard Dinámico** | El reloj muestra Temperatura, Tiempo (Iconos) y Notificaciones. | Información de HA directo en tu matriz LED. |
+| **📦 Large OTA Support** | Cambio a partición *Minimal SPIFFS (Large APPS)*. | Capacidad para firmwares de hasta 1.9MB vía WiFi. |
 
 ---
-## 🚀 Características Principales (v2.1.9)
+## 🧠 Características Core
 
-| Característica | Descripción | Estado |
-| :--- | :--- | :--- |
-| **🕹️ Modo Arcade** | Integración nativa para Frontends (Batocera/RetroPie). Cambio dinámico de GIFs vía API/MQTT. | **Nuevo** |
-| **🧠 Dual Core Engine** | **Núcleo 0:** Gestiona la Web, WiFi, gestor de Archivos, protocolo MQTT y actualizaciones OTA. **Núcleo 1:** Dedicado exclusivamente al renderizado de la matriz LED y la decodificación de GIFs.| **Optimizado** |
-| **🛡️ Sistema Mutex** | Uso de semáforos para evitar conflictos de lectura en la tarjeta SD. | **Estable** |
-| **🏠 Home Assistant** | Integración total mediante **MQTT Discovery**. Autodetectable. | **Mejorado** |
-| **📁 FileManager Pro** | Gestor de archivos web con soporte para carpetas y subida masiva. | **Mejorado** |
-| **⚡ Activar/Desactivar Matriz** | Botón para encender y apagar el panel LED. | **Nuevo** |
-| **🌐 Notificación de Conexión** | Mostrar la dirección IP asignada en el panel LED automáticamente al conectarse a la red Wi-Fi por primera vez. | **Nuevo** |
+* **Dual Core Engine:** Separación estricta de tareas. **Núcleo 0:** WiFi, Web y MQTT. **Núcleo 1:** Renderizado y decodificación de GIFs a 60 FPS.
+* **Modo Arcade:** Integración nativa con **Batocera/RetroPie**. El panel cambia el GIF según el juego seleccionado en tiempo real.
+* **FileManager Pro:** Gestión de archivos web. Sube, borra o organiza tus GIFs sin sacar la Micro SD.
+* **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
 
 ---
 
@@ -31,7 +38,6 @@ Para garantizar la compatibilidad, se recomienda el uso de los componentes proba
 * **Alimentación:** Fuente de alimentación de 5V (Mínimo 4A recomendado para paneles de 64x32).
 
 ---
-
 ## ⚙️ Instalación y Configuración
 
 ### 1. 🔌 Conexiones 
@@ -75,13 +81,19 @@ Ya no es necesario instalar Arduino IDE ni configurar librerías manualmente. Pu
 1. Utiliza un navegador compatible (**Google Chrome** o **Microsoft Edge**).
 2. Conecta tu ESP32 al puerto USB del ordenador.
 3. Haz clic en el botón **"Install"** de la web y selecciona el puerto COM correspondiente.
-4. **IMPORTANTE:** Si es la primera vez que instalas la v2.1.0, asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
+4. **IMPORTANTE:** Asegúrate de marcar la casilla **"Erase device"** en el asistente para realizar una limpieza completa de la memoria y evitar errores de fragmentación.
 
 > 💡 **¿No reconoce tu ESP32?**
 > Si al pulsar "Install" no aparece ningún puerto COM, es probable que necesites instalar los drivers del chip USB de tu placa:
 > * **Chip CP2102:** [Descargar Drivers Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
 > * **Chip CH340/CH341:** [Descargar Drivers SparkFun](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+> * 
+**(IMPORTANTE)** Si decides programarlo desde **Arduino IDE** ten en cuenta lo siguiente.
+Debido a las nuevas funcionalidades, el firmware ocupa **1.236 KB**. Para que las actualizaciones OTA funcionen, es obligatorio configurar el mapa de memoria correctamente en el IDE de Arduino:
 
+1. Ve al menú **Herramientas > Partition Scheme**.
+2. Selecciona **"Minimal SPIFFS (Large APPS with OTA)"**.
+3. **Primera carga:** Debe realizarse por **cable USB** para aplicar el nuevo esquema de particiones. Las siguientes podrán ser inalámbricas.
   
 ### 3. 📂 Preparación de la Tarjeta SD
 
@@ -252,6 +264,92 @@ Para que el modo **🕹️ Arcade** de Batocera funcione siempre correctamente, 
 > 4. Dado que cada router es diferente, si tienes dudas busca en Google: *"Cómo asignar IP fija [modelo de tu router]"*.
 ---
 
+## 🏠 Integración Avanzada con Home Assistant
+
+El panel se integra de forma nativa mediante **MQTT Discovery**. Una vez configurado tu broker MQTT en la interfaz web, el dispositivo aparecerá automáticamente en HA.
+
+### 🎮 Entidades Disponibles
+* **`switch.retro_pixel_led_estado`**: Enciende o apaga la matriz LED (mantenimiento de CPU activo).
+* **`select.retro_pixel_led_modo`**: Selector de modo (`GIFs`, `Reloj`, `Texto`, `Arcade`).
+* **`number.retro_pixel_led_brillo`**: Control de intensidad lumínica (0-255).
+* **`select.retro_pixel_led_estilo_reloj`**: Selección entre los 8 estilos visuales de reloj.
+* **`light.retro_pixel_led_color_reloj`**: Selector de color RGB para el Reloj.
+* **`text.retro_pixel_led_texto_pantalla`**: Envío de mensajes personalizados para el modo marquesina.
+* **`light.retro_pixel_led_color_texto`**: Selector de color RGB para el texto deslizante.
+---
+
+### 🌦️ Dashboard Climático y Notificaciones
+Cuando el modo **Reloj** está activo y MQTT habilitado, el panel reserva la parte superior para mostrar información enviada desde Home Assistant.
+
+#### Diccionario de Iconos (Topic: `retro_pixel/cmd/weather`)
+Envía el ID numérico para mostrar el icono animado correspondiente:
+
+| ID | Estado | Icono Visual |
+| :--- | :--- | :--- |
+| **0** | Despejado / Sol | ☀️ Sol |
+| **1** | Nublado | ☁️ Nube estática |
+| **2** | Lluvia | 🌧️ Nube con lluvia |
+| **3** | Nieve | ❄️ Nieve |
+| **4** | Tormenta | 🌩️ Nube y rayo |
+| **5** | Noche | 🌙 Luna |
+| **6** | Tormenta/ lluvia | ⛈️ Rayos/Lluvia |
+| **7** | Niebla | 🌫️ Neblina |
+| **Default** | Por defecto | ☀️ Sol |
+
+#### Temperatura (Topic: `retropixel/retropixel_ID/cmd/temp`)
+Envía el valor numérico (ej: `22`) y el panel mostrará automáticamente `22°C` en la esquina superior derecha.
+
+#### Icono tiempo (Topic: `retropixel/retropixel_ID/cmd/temp`)
+Envía el valor numérico (ej: `0`) y el panel mostrará automáticamente `☀️` en la esquina superior derecha.
+
+#### Notificación (Topic: `retropixel/retropixel_ID/cmd/weather`)
+Envía el texto (ej: `Notificaciones`) y el panel mostrará automáticamente `Notificaciones` en la esquina superior izquierda.
+
+> [!TIP]
+> **ID:** > Tienes remplazar ID por tu ID real (ej 98A7B4). Este lo podras encontrar en el Monitor Serie. El ID son los 6 últimos dígitos de la MAC del ESP32.
+---
+
+### 🚀 Ejemplo de Automatización (YAML)
+Mostar en el panel la temperatura y el tiempo (cambia ID por el tuyo):
+
+```yaml
+alias: Actualizar Panel LED - Clima
+description: Envía temperatura e iconos al Retro Pixel LED
+triggers:
+  - entity_id: sensor.aemet_temperature
+    trigger: state
+  - entity_id: weather.aemet
+    trigger: state
+actions:
+  - data:
+      topic: retropixel/retropixel_ID/cmd/temp
+      payload: "{{ states('sensor.aemet_temperature') | round(0) }}"
+    action: mqtt.publish
+  - data:
+      topic: retropixel/retropixel_ID/cmd/weather
+      payload: >
+        {% set estado = states('weather.aemet') %} {% if estado == 'sunny' %} 0
+        {% elif estado == 'cloudy' or estado == 'partlycloudy' %} 1 {% elif
+        estado == 'rainy' or estado == 'pouring' %} 2 {% elif estado == 'snowy'
+        or estado == 'snowy-rainy' %} 3 {% elif estado == 'lightning' %} 4 {%
+        elif estado == 'clear-night' %} 5 {% elif estado == 'lightning-rainy' %}
+        4 {% elif estado == 'fog' %} 7 {% else %} 0 {% endif %}
+    action: mqtt.publish
+```
+### 🚀 Ejemplo de Script (YAML)
+Enviar notificación (cambia ID por el tuyo):
+
+```yaml
+alias: Notificaciones - Retro Pixel LED
+sequence:
+  - data:
+      topic: retropixel/retropixel_ID/cmd/notify
+      payload: Notificacion HA
+    action: mqtt.publish
+mode: single
+icon: mdi:cellphone-sound
+```
+---
   
 ## 🌐 Optimización de Rendimiento (Caché)
 Para evitar que el ESP32 escane toda la tarjeta SD en cada inicio (lo cual es lento), el sistema utiliza un mecanismo de Firma de Validación:
@@ -273,7 +371,6 @@ Para las próximas versiones, el proyecto se centrará en dos niveles de mejora:
 ### 🎨 Nivel Estético (Visual)
 * **Playlist Rotativa:** Cambiar la lógica de "un solo GIF" por una "lista de reproducción" que cambie de GIF cada cierto tiempo mientras el juego está activo.
 * **Variantes Aleatorias:** Soporte para múltiples GIFs por juego (ej: `sonic_1.gif`, `sonic_2.gif`) para añadir dinamismo visual al panel.
-* **🕔 Mejoras en la función Reloj:** Distintos diseños de reloj a elegir desde la WEB.
 * **📡 Mejoras en la función Text:** Distintos tamaños de letra...
 * **✍️ Control por Infrarrojos (IR):** Soporte para mandos a distancia para control físico (Encendido/Brillo/Modos).
 
@@ -297,4 +394,4 @@ Agradecimientos especiales a los desarrolladores de:
 * ESP32-HUB75-MatrixPanel-I2S-DMA
 * AnimatedGIF
 * WiFiManager
-* Grupo Telgram DMDos por su gran recopilación de GIFs.
+* Grupo Telegram DMDos por su gran recopilación de GIFs.
