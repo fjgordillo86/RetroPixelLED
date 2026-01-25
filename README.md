@@ -115,11 +115,6 @@ Es fundamental formatear la tarjeta en **FAT32** y mantener la siguiente estruct
 ├── gif_cache.txt        <-- Generado automáticamente (Índice de rutas - Modo Galeria de GIFs)
 └── gif_cache.sig        <-- Generado automáticamente (Firma de validación - Modo Galeria de GIFs)
 ```
-
-> [!CAUTION]
->**[IMPORTANTE]** Límite de archivos para el "Modo Galeria de GIFs": Se recomienda no superar los 100-150 GIFs por subcarpeta. Superar este límite puede agotar la memoria RAM del ESP32 durante la generación de la interfaz web de selección.
-
-
 ### 4. 🌐 Configuración Inicial y Conexión Wi-Fi
 
 Si es la primera vez que usas el dispositivo o si has cambiado de red, el **Retro Pixel LED** entrará en modo de configuración automática:
