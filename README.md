@@ -400,3 +400,4 @@ Agradecimientos especiales a los desarrolladores de:
 * AnimatedGIF
 * WiFiManager
 * Grupo Telegram DMDos por su gran recopilación de GIFs.
+* joseAveleira por la idea de las Notificaciones en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
