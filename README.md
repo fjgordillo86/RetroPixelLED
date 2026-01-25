@@ -276,12 +276,14 @@ El panel se integra de forma nativa mediante **MQTT Discovery**. Una vez configu
 * **`light.retro_pixel_led_color_reloj`**: Selector de color RGB para el Reloj.
 * **`text.retro_pixel_led_texto_pantalla`**: Envío de mensajes personalizados para el modo marquesina.
 * **`light.retro_pixel_led_color_texto`**: Selector de color RGB para el texto deslizante.
----
 
+<img width="988" height="557" alt="mqtt" src="https://github.com/user-attachments/assets/c329f342-8f26-48c0-884f-096421b12c2c" />
+
+---
 ### 🌦️ Dashboard Climático y Notificaciones
 Cuando el modo **Reloj** está activo y MQTT habilitado, el panel reserva la parte superior para mostrar información enviada desde Home Assistant.
 
-#### Diccionario de Iconos (Topic: `retro_pixel/cmd/weather`)
+#### Diccionario de Iconos (Topic: `retropixel/retropixel_ID/cmd/weather`)
 Envía el ID numérico para mostrar el icono animado correspondiente:
 
 | ID | Estado | Icono Visual |
@@ -296,11 +298,11 @@ Envía el ID numérico para mostrar el icono animado correspondiente:
 | **7** | Niebla | 🌫️ Neblina |
 | **Default** | Por defecto | ☀️ Sol |
 
+#### Icono tiempo (Topic: `retropixel/retropixel_ID/cmd/weather`)
+Envía el valor numérico (ej: `0`) y el panel mostrará automáticamente `☀️` en la esquina superior derecha.
+
 #### Temperatura (Topic: `retropixel/retropixel_ID/cmd/temp`)
 Envía el valor numérico (ej: `22`) y el panel mostrará automáticamente `22°C` en la esquina superior derecha.
-
-#### Icono tiempo (Topic: `retropixel/retropixel_ID/cmd/temp`)
-Envía el valor numérico (ej: `0`) y el panel mostrará automáticamente `☀️` en la esquina superior derecha.
 
 #### Notificación (Topic: `retropixel/retropixel_ID/cmd/weather`)
 Envía el texto (ej: `Notificaciones`) y el panel mostrará automáticamente `Notificaciones` en la esquina superior izquierda.
@@ -349,8 +351,11 @@ sequence:
 mode: single
 icon: mdi:cellphone-sound
 ```
+
+Estos son solo unos ejemplos podrás realizar lo que te imagines, temporizar encendido/apagado a unas horas específicas, cambiar de modo automaticamente cada x tiempo... todo gracias a la potencia y versatilidad que ofrece Home Assistant.
+
 ---
-  
+
 ## 🌐 Optimización de Rendimiento (Caché)
 Para evitar que el ESP32 escane toda la tarjeta SD en cada inicio (lo cual es lento), el sistema utiliza un mecanismo de Firma de Validación:
 
