@@ -1,14 +1,15 @@
-# ✨ Retro Pixel LED v2.2.9
+# ✨ Retro Pixel LED v3.0.0
 
 ## 💡 Descripción del Proyecto
 
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
-Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **2.2.9** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**.
+Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el limite de GIFs !!**
 
-## 🚀 Novedades de la Versión 2.2.9 (¡Lo nuevo!)
+## 🚀 Novedades de la Versión 3.0.0 (¡Lo nuevo!)
 
 | Característica | Detalle Técnico | Beneficio |
 | :--- | :--- | :--- |
+| **♾️ Listado de GIFs Sin límite** | Se elimina la restricción de 100/150 GIFs pasando a ser ilimitados | Se lista directamente a la SD. |
 | **💎 Panel 100% Estable** | Eliminación de "píxeles locos" mediante optimización de tiempos I2S. | Visualización perfecta sin glitches. |
 | **🌐 WiFi Inteligente** | Modo de funcionamiento híbrido (Online/Offline) configurable. | El panel funciona con o sin conexión a internet. |
 | **🛠️ Hardware Pro** | Ajuste de velocidad I2S, Refresh Rate y Latch Blanking. | Control total anti-ghosting desde la interfaz Web. |
@@ -21,6 +22,8 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 ## 🧠 Características Core
 
 * **Dual Core Engine:** Separación estricta de tareas. **Núcleo 0:** WiFi, Web y MQTT. **Núcleo 1:** Renderizado y decodificación de GIFs a 60 FPS.
+* **Infinite GIF List:** Nuevo motor de lectura por streaming directo desde SD. ¡Soporta miles de GIFs sin agotar la RAM!
+* **Streaming Engine:** Decodificación en tiempo real directamente desde el archivo `gif_cache.txt`.
 * **Modo Arcade:** Integración nativa con **Batocera/RetroPie**. El panel cambia el GIF según el juego seleccionado en tiempo real.
 * **FileManager Pro:** Gestión de archivos web. Sube, borra o organiza tus GIFs sin sacar la Micro SD.
 * **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
