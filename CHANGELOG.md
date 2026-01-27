@@ -1,5 +1,11 @@
 # 📓 Historial de Cambios (Changelog) - Retro Pixel LED
 
+## [3.0.1] - 2026-01-27
+### 🛠️ Corregido (Hotfix: True Random Engine)
+- **🎲 Hardware RNG Integration:** Eliminado el uso de randomSeed() y random() por software. Ahora el sistema utiliza esp_random() directamente, que lee el ruido térmico del chip ESP32. Esto garantiza que la secuencia de GIFs sea 100% diferente en cada reinicio, corrigiendo el patrón repetitivo.
+- **📁 Optimización de Punteros SD:** Refinada la lógica de alineación de líneas en el archivo de caché para asegurar que el modo aleatorio siempre lea rutas de archivos completas y válidas.
+
+---
 ## [3.0.0] - 2026-01-25
 ### ✨ Añadido (Major Update: Infinite SD Engine)
 - **♾️ SD Streaming Engine:** Implementación de lectura directa de archivos GIF desde la SD. Eliminada la limitación de memoria RAM para las listas de archivos.
