@@ -1,4 +1,4 @@
-# ✨ Retro Pixel LED v3.0.0
+# ✨ Retro Pixel LED v3.0.1
 
 ## 💡 Descripción del Proyecto
 
@@ -9,6 +9,7 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 
 | Característica | Detalle Técnico | Beneficio |
 | :--- | :--- | :--- |
+| **🎲 True Random (v3.0.1)** | **Hardware RNG Integration.** Usa el ruido del chip ESP32. | **Aleatoriedad real.** No se repiten secuencias al reiniciar. |
 | **♾️ Listado de GIFs Sin límite** | Se elimina la restricción de 100/150 GIFs pasando a ser ilimitados | Se lista directamente a la SD. |
 | **💎 Panel 100% Estable** | Eliminación de "píxeles locos" mediante optimización de tiempos I2S. | Visualización perfecta sin glitches. |
 | **🌐 WiFi Inteligente** | Modo de funcionamiento híbrido (Online/Offline) configurable. | El panel funciona con o sin conexión a internet. |
@@ -22,12 +23,17 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 ## 🧠 Características Core
 
 * **Dual Core Engine:** Separación estricta de tareas. **Núcleo 0:** WiFi, Web y MQTT. **Núcleo 1:** Renderizado y decodificación de GIFs a 60 FPS.
+* **True Random Engine (v3.0.1):** Utiliza el generador de números aleatorios por hardware del ESP32. Lee el ruido electromagnético real para que la secuencia de GIFs sea siempre impredecible.
 * **Infinite GIF List:** Nuevo motor de lectura por streaming directo desde SD. ¡Soporta miles de GIFs sin agotar la RAM!
 * **Streaming Engine:** Decodificación en tiempo real directamente desde el archivo `gif_cache.txt`.
 * **Modo Arcade:** Integración nativa con **Batocera/RetroPie**. El panel cambia el GIF según el juego seleccionado en tiempo real.
 * **FileManager Pro:** Gestión de archivos web. Sube, borra o organiza tus GIFs sin sacar la Micro SD.
 * **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
 
+---
+## 🛠️ Notas del Hotfix v3.0.1
+Esta revisión soluciona el comportamiento determinista del modo aleatorio:
+* **Corrección:** Se elimina la dependencia de `randomSeed()` que causaba que el panel siempre empezara por el mismo GIF.
 ---
 
 ## 🛒 Lista de Materiales
