@@ -1,15 +1,18 @@
-# ✨ Retro Pixel LED v3.0.1
+# ✨ Retro Pixel LED v3.1.0
 
 ## 💡 Descripción del Proyecto
 
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
-Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el limite de GIFs !!**
+Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el límite de GIFs !!**
 
-## 🚀 Novedades de la Versión 3.0.0 (¡Lo nuevo!)
+## 🚀 Novedades de la Versión 3.1.0 (¡Lo nuevo!)
 
 | Característica | Detalle Técnico | Beneficio |
 | :--- | :--- | :--- |
-| **🎲 True Random (v3.0.1)** | **Hardware RNG Integration.** Usa el ruido del chip ESP32. | **Aleatoriedad real.** No se repiten secuencias al reiniciar. |
+| **🌱 Eco-Energy Mode (v3.1.0)** | **Dynamic Frequency Scaling (80/240MHz).** | **Menos calor y consumo.** El ESP32 "descansa" cuando el panel está OFF. |
+| **🕹️ Arcade Clean UI (v3.1.0)** | Eliminación de superposiciones de texto en modo Arcade. | Integración con **Batocera** más inmersiva y estética 100% limpia. |
+| **♾️ Listado Infinito** | Motor de streaming directo desde SD (v3.0.0). | Soporta miles de GIFs sin agotar la RAM del sistema. |
+| **🎲 True Random** | **Hardware RNG Integration.** Usa el ruido del chip ESP32. | **Aleatoriedad real.** No se repiten secuencias al reiniciar. |
 | **♾️ Listado de GIFs Sin límite** | Se elimina la restricción de 100/150 GIFs pasando a ser ilimitados | Se lista directamente a la SD. |
 | **💎 Panel 100% Estable** | Eliminación de "píxeles locos" mediante optimización de tiempos I2S. | Visualización perfecta sin glitches. |
 | **🌐 WiFi Inteligente** | Modo de funcionamiento híbrido (Online/Offline) configurable. | El panel funciona con o sin conexión a internet. |
@@ -22,8 +25,9 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 ---
 ## 🧠 Características Core
 
+* **Smart Energy Management (v3.1.0):** Cuando la matriz se apaga, el procesador reduce automáticamente su velocidad de **240MHz a 80MHz**. Esto reduce el consumo energético y el estrés térmico del chip, manteniendo el WiFi y Home Assistant siempre activos y listos para responder.
 * **Dual Core Engine:** Separación estricta de tareas. **Núcleo 0:** WiFi, Web y MQTT. **Núcleo 1:** Renderizado y decodificación de GIFs a 60 FPS.
-* **True Random Engine (v3.0.1):** Utiliza el generador de números aleatorios por hardware del ESP32. Lee el ruido electromagnético real para que la secuencia de GIFs sea siempre impredecible.
+* **True Random Engine:** Utiliza el generador de números aleatorios por hardware del ESP32. Lee el ruido electromagnético real para que la secuencia de GIFs sea siempre impredecible.
 * **Infinite GIF List:** Nuevo motor de lectura por streaming directo desde SD. ¡Soporta miles de GIFs sin agotar la RAM!
 * **Streaming Engine:** Decodificación en tiempo real directamente desde el archivo `gif_cache.txt`.
 * **Modo Arcade:** Integración nativa con **Batocera/RetroPie**. El panel cambia el GIF según el juego seleccionado en tiempo real.
@@ -31,9 +35,10 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 * **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
 
 ---
-## 🛠️ Notas del Hotfix v3.0.1
-Esta revisión soluciona el comportamiento determinista del modo aleatorio:
-* **Corrección:** Se elimina la dependencia de `randomSeed()` que causaba que el panel siempre empezara por el mismo GIF.
+## 🛠️ Notas de la v3.1.0
+* **Mejora:** Implementación de ahorro de energía dinámico mediante `setCpuFrequencyMhz(80)` en estado Standby.
+* **Corrección:** Eliminada la etiqueta "FILES MODE" que aparecía al recibir comandos externos en modo Arcade, permitiendo una transición de imagen limpia.
+* **Estabilidad:** Código optimizado y testeado para **ESP-32 Core 3.3.5**.
 ---
 
 ## 🛒 Lista de Materiales
@@ -375,7 +380,6 @@ Para las próximas versiones, el proyecto se centrará en dos niveles de mejora:
 ### ⚡ Nivel de Optimización (Rendimiento)
 * **Búsqueda Binaria:** Implementación de algoritmo de búsqueda binaria sobre `batocera_cache.txt` y `gif_cache.txt`. Esto permitirá lanzamientos instantáneos incluso en colecciones con más de 10.000 juegos.
 * **Streaming de SD a Web:** Refactorización del *FileManager* para listar archivos directamente desde la SD al navegador, eliminando por completo el uso de búfer de RAM intermedio.
-* **💤 Gestión de Energía:** Implementación de modo *Sleep* y apagado programado para prolongar la vida útil de los paneles LED.
 
 ### 🎨 Nivel Estético (Visual)
 * **Playlist Rotativa:** Cambiar la lógica de "un solo GIF" por una "lista de reproducción" que cambie de GIF cada cierto tiempo mientras el juego está activo.
@@ -404,4 +408,4 @@ Agradecimientos especiales a los desarrolladores de:
 * AnimatedGIF
 * WiFiManager
 * Grupo Telegram DMDos por su gran recopilación de GIFs.
-* joseAveleira por la idea de las Notificaciones en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
+* joseAveleira por la idea de las Notificaciones de tiempo en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
