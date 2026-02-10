@@ -1,5 +1,18 @@
 # 📓 Historial de Cambios (Changelog) - Retro Pixel LED
 
+## [3.1.0] - 2026-02-10
+### ✨ Añadido (Performance & Efficiency Update)
+- **🌱 Eco-Energy Mode:** Implementación de escalado dinámico de frecuencia de CPU. El sistema detecta cuando el panel está en estado `Power OFF` y reduce la velocidad del chip de **240MHz a 80MHz**. Esto disminuye drásticamente el consumo y la temperatura, manteniendo el WiFi y Home Assistant totalmente operativos.
+- **🚀 Ultra-Fast Wake:** Al encender el panel desde la Web o HA, la CPU restaura instantáneamente los 240MHz para garantizar la decodificación fluida de GIFs sin latencia.
+
+### 🛠️ Optimizado (Modo Arcade Clean UI)
+- **🕹️ Arcade Visual Fix:** Eliminada la etiqueta intrusiva "FILES MODE" que aparecía al recibir comandos remotos (Batocera). Ahora, el cambio de GIF es directo y limpio, mejorando la estética de la integración arcade.
+- **🖥️ Task Handling:** Refinada la prioridad del `TaskDisplay` para evitar micro-tirones durante el cambio dinámico de frecuencias.
+
+### ⚙️ Compatibilidad
+- **🔧 Core Stability:** Optimización validada para el **ESP32 Arduino Core 3.3.5**, asegurando la estabilidad del bus I2S y las peticiones Web bajo el nuevo SDK.
+
+---
 ## [3.0.1] - 2026-01-27
 ### 🛠️ Corregido (Hotfix: True Random Engine)
 - **🎲 Hardware RNG Integration:** Eliminado el uso de randomSeed() y random() por software. Ahora el sistema utiliza esp_random() directamente, que lee el ruido térmico del chip ESP32. Esto garantiza que la secuencia de GIFs sea 100% diferente en cada reinicio, corrigiendo el patrón repetitivo.
