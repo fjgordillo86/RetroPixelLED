@@ -1,6 +1,6 @@
 # 📓 Historial de Cambios (Changelog) - Retro Pixel LED
 
-## [3.1.0] - 2026-02-10
+## [3.0.3] - 2026-02-10
 ### ✨ Añadido (Performance & Efficiency Update)
 - **🌱 Eco-Energy Mode:** Implementación de escalado dinámico de frecuencia de CPU. El sistema detecta cuando el panel está en estado `Power OFF` y reduce la velocidad del chip de **240MHz a 80MHz**. Esto disminuye drásticamente el consumo y la temperatura, manteniendo el WiFi y Home Assistant totalmente operativos.
 - **🚀 Ultra-Fast Wake:** Al encender el panel desde la Web o HA, la CPU restaura instantáneamente los 240MHz para garantizar la decodificación fluida de GIFs sin latencia.
