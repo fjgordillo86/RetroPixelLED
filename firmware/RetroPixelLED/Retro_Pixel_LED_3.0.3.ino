@@ -18,7 +18,7 @@
 // ====================================================================
 //                          CONSTANTES & FIRMWARE
 // ====================================================================
-#define FIRMWARE_VERSION "3.1.0" // MODIFICADO:  Modo ahorro: CPU a 80MHz. Se crea "interrumpirReproduccion" en modo Arcade y no hacer uso de enModoGestion la cual muestra en pantalla "File Manager"
+#define FIRMWARE_VERSION "3.0.3" // MODIFICADO:  Modo ahorro: CPU a 80MHz. Se crea "interrumpirReproduccion" en modo Arcade y no hacer uso de enModoGestion la cual muestra en pantalla "File Manager"
 #define PREF_NAMESPACE "pixel_config"
 #define DEVICE_NAME_DEFAULT "RetroPixel-Default"
 #define TZ_STRING_SPAIN "CET-1CEST,M3.5.0,M10.5.0/3" // Cadena TZ por defecto segura
