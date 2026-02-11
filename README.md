@@ -1,16 +1,16 @@
-# ✨ Retro Pixel LED v3.1.0
+# ✨ Retro Pixel LED v3.0.3
 
 ## 💡 Descripción del Proyecto
 
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
 Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el límite de GIFs !!**
 
-## 🚀 Novedades de la Versión 3.1.0 (¡Lo nuevo!)
+## 🚀 Novedades de la Versión 3.0.3 (¡Lo nuevo!)
 
 | Característica | Detalle Técnico | Beneficio |
 | :--- | :--- | :--- |
-| **🌱 Eco-Energy Mode (v3.1.0)** | **Dynamic Frequency Scaling (80/240MHz).** | **Menos calor y consumo.** El ESP32 "descansa" cuando el panel está OFF. |
-| **🕹️ Arcade Clean UI (v3.1.0)** | Eliminación de superposiciones de texto en modo Arcade. | Integración con **Batocera** más inmersiva y estética 100% limpia. |
+| **🌱 Eco-Energy Mode (v3.0.3)** | **Dynamic Frequency Scaling (80/240MHz).** | **Menos calor y consumo.** El ESP32 "descansa" cuando el panel está OFF. |
+| **🕹️ Arcade Clean UI (v3.0.3)** | Eliminación de superposiciones de texto en modo Arcade. | Integración con **Batocera** más inmersiva y estética 100% limpia. |
 | **♾️ Listado Infinito** | Motor de streaming directo desde SD (v3.0.0). | Soporta miles de GIFs sin agotar la RAM del sistema. |
 | **🎲 True Random** | **Hardware RNG Integration.** Usa el ruido del chip ESP32. | **Aleatoriedad real.** No se repiten secuencias al reiniciar. |
 | **♾️ Listado de GIFs Sin límite** | Se elimina la restricción de 100/150 GIFs pasando a ser ilimitados | Se lista directamente a la SD. |
@@ -25,7 +25,7 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 ---
 ## 🧠 Características Core
 
-* **Smart Energy Management (v3.1.0):** Cuando la matriz se apaga, el procesador reduce automáticamente su velocidad de **240MHz a 80MHz**. Esto reduce el consumo energético y el estrés térmico del chip, manteniendo el WiFi y Home Assistant siempre activos y listos para responder.
+* **Smart Energy Management (v3.0.3):** Cuando la matriz se apaga, el procesador reduce automáticamente su velocidad de **240MHz a 80MHz**. Esto reduce el consumo energético y el estrés térmico del chip, manteniendo el WiFi y Home Assistant siempre activos y listos para responder.
 * **Dual Core Engine:** Separación estricta de tareas. **Núcleo 0:** WiFi, Web y MQTT. **Núcleo 1:** Renderizado y decodificación de GIFs a 60 FPS.
 * **True Random Engine:** Utiliza el generador de números aleatorios por hardware del ESP32. Lee el ruido electromagnético real para que la secuencia de GIFs sea siempre impredecible.
 * **Infinite GIF List:** Nuevo motor de lectura por streaming directo desde SD. ¡Soporta miles de GIFs sin agotar la RAM!
@@ -35,7 +35,7 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 * **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
 
 ---
-## 🛠️ Notas de la v3.1.0
+## 🛠️ Notas de la v3.0.3
 * **Mejora:** Implementación de ahorro de energía dinámico mediante `setCpuFrequencyMhz(80)` en estado Standby.
 * **Corrección:** Eliminada la etiqueta "FILES MODE" que aparecía al recibir comandos externos en modo Arcade, permitiendo una transición de imagen limpia.
 * **Estabilidad:** Código optimizado y testeado para **ESP-32 Core 3.3.5**.
