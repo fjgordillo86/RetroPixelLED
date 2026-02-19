@@ -1,5 +1,19 @@
 # 📓 Historial de Cambios (Changelog) - Retro Pixel LED
 
+## [3.0.4] - 2026-02-19
+### ✨ Añadido (Smart Feature & Web Stability Update)
+- **🕒 Intercalado de Reloj Automático:** Nueva función que permite mostrar el reloj digital durante 10 segundos tras la reproducción de un número configurable de GIFs. Ideal para mantener el panel informativo sin salir del modo galería.
+- **📦 Chunked Transfer Encoding:** Implementación de envío de datos por fragmentos en el servidor Web. Esto permite cargar listas de carpetas y archivos masivos sin agotar la memoria RAM del ESP32, garantizando la carga completa de la interfaz en dispositivos móviles.
+
+### 🛠️ Optimizado (UI/UX Refinement)
+- **🎨 Interfaz Unificada:** Reubicación de los controles de "Auto Reloj" dentro de la tarjeta de Ajustes de Galería. La configuración de intervalos y activación ahora es más intuitiva y centralizada.
+- **🧼 Limpieza de Buffers HTML:** Refactorización de las funciones `handleRoot` y `handleConfig` para evitar duplicidad de tarjetas y asegurar un renderizado limpio de la configuración MQTT y Hardware.
+
+### ⚙️ Mejoras de Sistema
+- **📡 Robustez MQTT:** Sincronización automática de estados tras el guardado de configuración, asegurando que Home Assistant refleje los cambios de modo o texto inmediatamente.
+- **🔒 Estabilidad de Memoria:** Reducción drástica del "Heap Peak" durante el uso de la interfaz web gracias al sistema de streaming de contenidos por trozos.
+
+---
 ## [3.0.3] - 2026-02-10
 ### ✨ Añadido (Performance & Efficiency Update)
 - **🌱 Eco-Energy Mode:** Implementación de escalado dinámico de frecuencia de CPU. El sistema detecta cuando el panel está en estado `Power OFF` y reduce la velocidad del chip de **240MHz a 80MHz**. Esto disminuye drásticamente el consumo y la temperatura, manteniendo el WiFi y Home Assistant totalmente operativos.
