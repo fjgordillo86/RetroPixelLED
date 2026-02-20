@@ -1,19 +1,21 @@
-# ✨ Retro Pixel LED v3.0.4
+# ✨ Retro Pixel LED v3.0.5
 
 ## 💡 Descripción del Proyecto
 
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
 Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el límite de GIFs !!**
 
-## 🚀 Novedades de la Versión 3.0.4 (¡Lo nuevo!)
+## 🚀 Novedades de la Versión 3.0.5 (¡Lo nuevo!)
 
 | Característica | Detalle Técnico | Beneficio |
 | :--- | :--- | :--- |
-|**🕒 Auto Clock Interv. (v3.0.4)** | **Ciclo de interrupción temporizada (10s).** | **Reloj automático.** El panel muestra la hora cada X GIFs sin cambiar de modo manualmente. |
-| **📦 Chunked Web Delivery (v3.0.4)** | **Streaming de HTML por fragmentos.** | **Navegación fluida.** Elimina errores de memoria y cortes al cargar la web desde móviles. |
-| **🎨 Unified Gallery UI (v3.0.4)** | Integración de ajustes de reloj en la tarjeta de GIFs. | **Interfaz más limpia.** Configuración de galería y reloj automático en un solo lugar. |
-| **🌱 Eco-Energy Mode (v3.0.3)** | **Dynamic Frequency Scaling (80/240MHz).** | **Menos calor y consumo.** El ESP32 "descansa" cuando el panel está OFF. |
-| **🕹️ Arcade Clean UI (v3.0.3)** | Eliminación de superposiciones de texto en modo Arcade. | Integración con **Batocera** más inmersiva y estética 100% limpia. |
+| **💾 POST Config Method (v3.0.5)** | Cambio de lógica de guardado de GET a POST. | **Guardado fiable.** Evita errores de URL demasiado largas y fallos al salvar ajustes de hardware. |
+| **🎨 External CSS (v3.0.5)** | Migración del estilo visual a un archivo `/style.css` independiente. | **Web más rápida.** Libera memoria RAM crítica y permite el uso de caché del navegador. |
+| **🕒 Auto Clock Interv.** | **Ciclo de interrupción temporizada (10s).** | **Reloj automático.** El panel muestra la hora cada X GIFs sin cambiar de modo manualmente. |
+| **📦 Chunked Web Delivery** | **Streaming de HTML por fragmentos.** | **Navegación fluida.** Elimina errores de memoria y cortes al cargar la web desde móviles. |
+| **🎨 Unified Gallery UI** | Integración de ajustes de reloj en la tarjeta de GIFs. | **Interfaz más limpia.** Configuración de galería y reloj automático en un solo lugar. |
+| **🌱 Eco-Energy Mode** | **Dynamic Frequency Scaling (80/240MHz).** | **Menos calor y consumo.** El ESP32 "descansa" cuando el panel está OFF. |
+| **🕹️ Arcade Clean UI** | Eliminación de superposiciones de texto en modo Arcade. | Integración con **Batocera** más inmersiva y estética 100% limpia. |
 | **♾️ Listado Infinito** | Motor de streaming directo desde SD (v3.0.0). | Soporta miles de GIFs sin agotar la RAM del sistema. |
 | **🎲 True Random** | **Hardware RNG Integration.** Usa el ruido del chip ESP32. | **Aleatoriedad real.** No se repiten secuencias al reiniciar. |
 | **♾️ Listado de GIFs Sin límite** | Se elimina la restricción de 100/150 GIFs pasando a ser ilimitados | Se lista directamente a la SD. |
@@ -40,10 +42,10 @@ Este sistema permite transformar una matriz LED en un centro de información y a
 * **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
 
 ---
-## 🛠️ Notas de la v3.0.4
-* **Mejora:** El interruptor de **Auto Reloj** se ha integrado en la tarjeta de "Ajustes de Galería" para una configuración más intuitiva.
-* **Optimización:** Corrección de errores visuales en la WebUI mediante la limpieza de buffers HTML en el envío por trozos.
-* **Corrección:** Sincronización de estado MQTT reforzada tras guardar cambios en la página de configuración.
+## 🛠️ Notas de la v3.0.5 HotFix
+* **Mejora:** El formulario de la página de configuración ahora es mucho más robusto al usar el método POST.
+* **Optimización:** Limpieza de buffers HTML para asegurar que el diseño neón se aplique correctamente en todas las páginas.
+* **Corrección:** Se ha corregido el error de "Modo Gestión".
 ---
 
 ## 🛒 Lista de Materiales
