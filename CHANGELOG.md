@@ -1,5 +1,12 @@
 # 📓 Historial de Cambios (Changelog) - Retro Pixel LED
 
+## [3.0.5] - 2026-02-20
+### 🛡️ Corregido (Critical Stability Hotfix)
+- **🔒 SD Mutex Integration (Modo Gestión):** Se ha implementado el uso de semáforos (`sdMutex`) en las funciones de listado de archivos y gestor de archivos. Esto elimina el error `Guru Meditation Error: LoadProhibited` que ocurría al intentar navegar por la web mientras el panel reproducía un GIF desde la SD.
+- **💾 POST Config Method:** Migración de toda la lógica de guardado de parámetros desde el método `GET` al método `POST`. Esto garantiza que las configuraciones de WiFi, Hardware y MQTT se guarden de forma íntegra, evitando errores de URLs truncadas o fallos de escritura en la memoria Flash.
+- **🎨 External CSS** Migración del estilo visual a un archivo `/style.css` independiente. **Web más rápida.** Libera memoria RAM crítica y permite el uso de caché del navegador.
+  
+---
 ## [3.0.4] - 2026-02-19
 ### ✨ Añadido (Smart Feature & Web Stability Update)
 - **🕒 Intercalado de Reloj Automático:** Nueva función que permite mostrar el reloj digital durante 10 segundos tras la reproducción de un número configurable de GIFs. Ideal para mantener el panel informativo sin salir del modo galería.
