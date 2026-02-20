@@ -139,7 +139,7 @@ Si es la primera vez que usas el dispositivo o si has cambiado de red, el **Retr
 
 1.  **Conexión al Punto de Acceso:** Busca en tu smartphone o PC una red Wi-Fi llamada `Retro Pixel LED`. (No requiere contraseña).
 2.  **Portal Cautivo:** Una vez conectado, el navegador debería abrirse automáticamente. Si no lo hace, accede a la dirección `192.168.4.1`.
-3.  **Configurar Wi-Fi:** Pulsa en "Configure WiFi", selecciona tu red doméstica, introduce la contraseña y guarda. El ESP32 se reiniciará y se conectará a tu red local.
+3.  **Configurar Wi-Fi:** Pulsa en "Configure WiFi", selecciona tu red doméstica, introduce la contraseña y guarda. El ESP32 se reiniciará (si una vez guardada la red wifi elegida no se reinicia el ESP automaticamente habrá que resetearlo de manera manual) y se conectará a tu red local.
 
 
 ### 5. 🖥️ Gestión mediante Servidor Web (Web UI)
