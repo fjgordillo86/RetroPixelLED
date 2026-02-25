@@ -1,15 +1,26 @@
 {
   "name": "Retro Pixel LED",
-  "version": "3.0.5",
+  "version": "3.0.5 y Lite 1.0.0",
   "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
+      "name": "Versión Estándar v3.0.5",
       "parts": [
         { "path": "bootloader.bin", "offset": 4096 },
         { "path": "partitions.bin", "offset": 32768 },
         { "path": "boot_app0.bin", "offset": 57344 },
         { "path": "firmware.bin", "offset": 65536 }
+      ]
+    },
+    {
+      "chipFamily": "ESP32",
+      "name": "Versión Lite v1.0.0",
+      "parts": [
+        { "path": "bootloader.bin", "offset": 4096 },
+        { "path": "partitions.bin", "offset": 32768 },
+        { "path": "boot_app0.bin", "offset": 57344 },
+        { "path": "firmware_lite.bin", "offset": 65536 }
       ]
     }
   ]
