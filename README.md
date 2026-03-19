@@ -7,6 +7,8 @@
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
 Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el límite de GIFs !!**
 
+Existe una versión **Lite** de este proyecto si quieres probarla aquí tienes el enlace al **[GitHub.](https://github.com/fjgordillo86/RetroPixelLED-Lite/tree/main)**
+
 > [!IMPORTANT]
 > **📂 Listado de GIFs:** En el Modo "Galería de GIFs" al utilizar carpetas con cientos / miles de GIFs (ej. +3000 archivos), el sistema requiere un tiempo inicial para indexar la lista directamente desde la SD. Si el panel muestra **"LISTANDO GIFs..."**, no es un error ni el sistema se ha bloqueado; está creando el archivo de caché para que la reproducción posterior instantánea. Para una selección de 3000 GIFs este proceso puede tardar de **7 a 9 minutos** dependiendo de la velocidad de tu tarjeta SD. **¡No reinicies el dispositivo durante este proceso!** (Este tiempo solo es requerido cuando realizamos una selección de carpetas a reproducir, despues la reprodución sera inmediata)
 
