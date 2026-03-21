@@ -161,7 +161,7 @@ Una vez que el dispositivo esté en tu red local, puedes acceder a su panel de c
 
 ### 6. 📖 Cómo usar el Script Generador de Playlists (Windows)
 
-El script `Generar_Playlist.bat` (v1.0.1) facilita la creación de colecciones personalizadas sin tocar una sola línea de código. Lo encontrarás en la carpeta "Playlist Script" de este GitHub.
+El script `Generar_Playlist.bat` (v1.0.1) facilita la creación de colecciones personalizadas sin tocar una sola línea de código. Lo encontrarás en la carpeta "tool" [aquí](https://github.com/fjgordillo86/RetroPixelLED/tree/main/tools).
 
 1. **Preparación:** Coloca el archivo `.bat` en la **raíz de tu tarjeta SD**, justo al lado de la carpeta `gifs`.
 2. **Ejecución:** Haz doble clic en el archivo. Se abrirá una ventana de comandos.
