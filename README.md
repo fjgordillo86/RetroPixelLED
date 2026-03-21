@@ -419,8 +419,9 @@ En el caso de querer compilar y programar el proyecto dede Arduino IDE correctam
 Este proyecto se publica bajo la Licencia MIT. Consulta el archivo `LICENSE` para conocer los términos completos.
 
 Agradecimientos especiales a los desarrolladores de:
-* ESP32-HUB75-MatrixPanel-I2S-DMA
-* AnimatedGIF
-* WiFiManager
-* Grupo Telegram DMDos por su gran recopilación de GIFs.
-* joseAveleira por la idea de las Notificaciones de tiempo en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
+* **ESP32-HUB75-MatrixPanel-I2S-DMA**
+* **AnimatedGIF**
+* **WiFiManager**
+* **Comunidad Telegram DMDos** al encontrarla y ver de lo que era capáz DMDos me animé a desarrollar Retro Pixel LED.
+* **RpiTe@m** por la increíble recopilación de GIFs.
+* **joseAveleira** por la idea de las Notificaciones de tiempo en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
