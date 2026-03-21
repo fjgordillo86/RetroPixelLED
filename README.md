@@ -1,42 +1,38 @@
-# ✨ Retro Pixel LED v3.0.5
+# ✨ Retro Pixel LED v4.0.0
 
 ### **[✈️ Unirse al Grupo de Telegram: Retro Pixel LED](https://t.me/RetroPixelLed)**
 
 ## 💡 Descripción del Proyecto
 
 **Retro Pixel LED** es un firmware avanzado para dispositivos ESP32 diseñado para controlar matrices de LEDs (como las matrices HUB75 PxP o similares) a través de una interfaz web potente.
-Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **3.0.0** marca un hito en estabilidad y personalización, integrando un motor de renderizado optimizado y una simbiosis total con **Home Assistant**. **¡¡ Y eliminando el límite de GIFs !!**
+Este sistema permite transformar una matriz LED en un centro de información y arte retro, permitiendo cambiar entre **GIFs animados**, **Texto Deslizante**, **Reloj sincronizado por NTP** o **Arcade sincronizado con Batocera**. La versión **4.0.0** supone una revolución en la experiencia de usuario al introducir el **Sistema de Playlists Dinámicas**, permitiendo cambiar instantáneamente entre colecciones temáticas de GIFs y eliminando los tiempos de espera de indexación.
 
 Existe una versión **Lite** de este proyecto si quieres probarla aquí tienes el enlace al **[GitHub.](https://github.com/fjgordillo86/RetroPixelLED-Lite/tree/main)**
 
 > [!IMPORTANT]
-> **📂 Listado de GIFs:** En el Modo "Galería de GIFs" al utilizar carpetas con cientos / miles de GIFs (ej. +3000 archivos), el sistema requiere un tiempo inicial para indexar la lista directamente desde la SD. Si el panel muestra **"LISTANDO GIFs..."**, no es un error ni el sistema se ha bloqueado; está creando el archivo de caché para que la reproducción posterior instantánea. Para una selección de 3000 GIFs este proceso puede tardar de **7 a 9 minutos** dependiendo de la velocidad de tu tarjeta SD. **¡No reinicies el dispositivo durante este proceso!** (Este tiempo solo es requerido cuando realizamos una selección de carpetas a reproducir, despues la reprodución sera inmediata)
+> **📂 Listado de GIFs:** En el Modo "Galería de GIFs" si realizamos una lista de reproducción seleccionando "Auto-generar" en el desplegable "Origen de los GIFs" si tenemos carpetas con cientos / miles de GIFs (ej. +3000 archivos), el sistema requiere un tiempo inicial para indexar la lista directamente desde la SD. Si el panel muestra **"LISTANDO GIFs..."**, no es un error ni el sistema se ha bloqueado; está creando el archivo de caché para que la reproducción posterior instantánea. Para una selección de 3000 GIFs este proceso puede tardar de **7 a 9 minutos** dependiendo de la velocidad de tu tarjeta SD. **¡No reinicies el dispositivo durante este proceso!** (Este tiempo solo es requerido cuando realizamos una selección de carpetas a reproducir, despues la reprodución sera inmediata)
 
-## 🚀 Novedades de la Versión 3.0.5 (¡Lo nuevo!)
+> [!TIP]
+> **📂 ¡Adiós a las esperas!: El Modo Playlist (v4.0.0)** permite cargar listas de GIFs generadas previamente en tu PC. Si seleccionas una Playlist en lugar del modo "Auto-generar", el panel **no necesita indexar la SD**, iniciándose la reproducción de forma **instantánea** incluso con miles de archivos.
+> 
+## 🚀 Novedades de la Versión 4.0.0 (¡Lo nuevo!)
 
 | Característica | Detalle Técnico | Beneficio |
 | :--- | :--- | :--- |
-| **💾 POST Config Method (v3.0.5)** | Cambio de lógica de guardado de GET a POST. | **Guardado fiable.** Evita errores de URL demasiado largas y fallos al salvar ajustes de hardware. |
-| **🎨 External CSS (v3.0.5)** | Migración del estilo visual a un archivo `/style.css` independiente. | **Web más rápida.** Libera memoria RAM crítica y permite el uso de caché del navegador. |
-| **🕒 Auto Clock Interv.** | **Ciclo de interrupción temporizada (10s).** | **Reloj automático.** El panel muestra la hora cada X GIFs sin cambiar de modo manualmente. |
-| **📦 Chunked Web Delivery** | **Streaming de HTML por fragmentos.** | **Navegación fluida.** Elimina errores de memoria y cortes al cargar la web desde móviles. |
-| **🎨 Unified Gallery UI** | Integración de ajustes de reloj en la tarjeta de GIFs. | **Interfaz más limpia.** Configuración de galería y reloj automático en un solo lugar. |
-| **🌱 Eco-Energy Mode** | **Dynamic Frequency Scaling (80/240MHz).** | **Menos calor y consumo.** El ESP32 "descansa" cuando el panel está OFF. |
-| **🕹️ Arcade Clean UI** | Eliminación de superposiciones de texto en modo Arcade. | Integración con **Batocera** más inmersiva y estética 100% limpia. |
-| **♾️ Listado Infinito** | Motor de streaming directo desde SD (v3.0.0). | Soporta miles de GIFs sin agotar la RAM del sistema. |
-| **🎲 True Random** | **Hardware RNG Integration.** Usa el ruido del chip ESP32. | **Aleatoriedad real.** No se repiten secuencias al reiniciar. |
-| **♾️ Listado de GIFs Sin límite** | Se elimina la restricción de 100/150 GIFs pasando a ser ilimitados | Se lista directamente a la SD. |
-| **💎 Panel 100% Estable** | Eliminación de "píxeles locos" mediante optimización de tiempos I2S. | Visualización perfecta sin glitches. |
-| **🌐 WiFi Inteligente** | Modo de funcionamiento híbrido (Online/Offline) configurable. | El panel funciona con o sin conexión a internet. |
-| **🛠️ Hardware Pro** | Ajuste de velocidad I2S, Refresh Rate y Latch Blanking. | Control total anti-ghosting desde la interfaz Web. |
-| **🕔 Reloj Next-Gen** | 8 estilos visuales (Matrix, Rainbow, Neon, Pulse, Gradient...). | Estética premium con colores personalizables. |
-| **🏠 HA Full Control** | Integración total vía MQTT (Modos, Colores, Texto, Brillo). | Control absoluto desde Dashboards o Automatizaciones. |
-| **🌦️ Dashboard Dinámico** | El reloj muestra Temperatura, Tiempo (Iconos) y Notificaciones. | Información de HA directo en tu matriz LED. |
-| **📦 Large OTA Support** | Cambio a partición *Minimal SPIFFS (Large APPS)*. | Capacidad para firmwares de hasta 1.9MB vía WiFi. |
+| **📜 Dynamic Playlists** | Soporte para archivos `.txt` en la carpeta `/playlists`. | **Cambio de "Canal".** Elige entre listas como "Metal Slug", "Arcade" o "Consolas" al instante desde la Web. |
+| **⚡ Instant Switching** | Interrupción por hardware (`interrumpirReproduccion`) del núcleo de renderizado. | **Corte inmediato.** Al cambiar de modo o lista, el GIF actual se detiene al milisegundo sin esperar a que termine. |
+| **🖥️ PC Playlist Tool** | Script interactivo `.bat` (v2.3) para Windows optimizado. | **Gestión Pro.** Crea listas personalizadas seleccionando carpetas de tu SD en segundos con rutas limpias. |
+| **💾 NVS Persistence** | Guardado de la Playlist activa en la memoria Flash del ESP32. | **Memoria total.** Al reiniciar, el panel recuerda exactamente qué lista o modo estaba reproduciendo. |
+| **🕒 Auto Clock Interv.** | Ciclo de interrupción temporizada configurable. | **Reloj automático.** El panel muestra la hora cada X GIFs sin cambiar de modo manualmente. |
+| **🎨 External CSS** | Migración del estilo visual a un archivo `/style.css` en la SD. | **Web más rápida.** Libera memoria RAM crítica y permite el uso de caché del navegador. |
+| **🌱 Eco-Energy Mode** | Dynamic Frequency Scaling (80/240MHz). | **Menos calor.** El ESP32 reduce su potencia cuando el panel está apagado. |
+
 
 ---
 ## 🧠 Características Core
 
+* **Sistema de Playlists (v4.0.0):** Permite crear archivos de texto en la SD con rutas específicas de GIFs. Desde la interfaz web puedes alternar entre el modo "Auto" (escanea toda la SD) o tus listas personalizadas.
+* **Interrupción en Tiempo Real (v4.0.0):** Gracias al uso de banderas compartidas entre núcleos, cualquier cambio realizado en la web (Brillo, Modo, Playlist o integración con Batocera) se aplica de forma atómica.
 * **Auto Clock Logic (v3.0.4):** Nueva función que permite al panel interrumpir la galería de GIFs cada "X" archivos reproducidos para mostrar el reloj digital durante 10 segundos. Una vez finalizado el tiempo, el panel retoma la galería exactamente donde la dejó.
 * **Smart Web Engine (v3.0.4):** Implementación de transferencia de datos fragmentada (Chunked Transfer Encoding). Esto permite enviar páginas web complejas y listas de carpetas extensas sin agotar la RAM del ESP32, garantizando que la interfaz nunca se corte.
 * **Smart Energy Management:** Cuando la matriz se apaga, el procesador reduce automáticamente su velocidad de **240MHz a 80MHz**. Esto reduce el consumo energético y el estrés térmico del chip, manteniendo el WiFi y Home Assistant siempre activos y listos para responder.
@@ -49,18 +45,13 @@ Existe una versión **Lite** de este proyecto si quieres probarla aquí tienes e
 * **Sistema Mutex:** Implementación de semáforos para evitar conflictos de lectura en la SD entre núcleos.
 
 ---
-## 🛠️ Notas de la v3.0.5 HotFix
-* **Mejora:** El formulario de la página de configuración ahora es mucho más robusto al usar el método POST.
-* **Optimización:** Limpieza de buffers HTML para asegurar que el diseño neón se aplique correctamente en todas las páginas.
-* **Corrección:** Se ha corregido el error de "Modo Gestión".
----
 
 ## 🛒 Lista de Materiales
 
 Para garantizar la compatibilidad, se recomienda el uso de los componentes probados durante el desarrollo:
 
 * **Microcontrolador:** [ESP32 DevKit V1 (38 pines) - AliExpress](https://es.aliexpress.com/item/1005005704190069.html)
-* **Panel LED Matrix (HUB75):** [P2.5 / P3 / P4 RGB Matrix Panel - AliExpress](https://es.aliexpress.com/item/1005007439017560.html)
+* **Panel LED Matrix (HUB75):** [P2.5 / P4 RGB Matrix Panel - AliExpress](https://es.aliexpress.com/item/1005007439017560.html)
 * **Lector de Tarjetas:** [Módulo Adaptador Micro SD (SPI) - AliExpress](https://es.aliexpress.com/item/1005005591145849.html)
 * **Placa conexión ESP32-Panel LED:** [DMDos Board V3 - Mortaca ](https://www.mortaca.com/) (Opcional, no hay que soldar y tiene lector SD incroporado)
 * **Alimentación:** Fuente de alimentación de 5V (Mínimo 4A recomendado para paneles de 64x32).
@@ -129,16 +120,21 @@ Es fundamental formatear la tarjeta en **FAT32** y mantener la siguiente estruct
 
 ```text
 / (Raíz de la SD)
-├── gifs/                <-- Uso exclusivo para el Modo Galeria de GIFs.
-│   ├── Arcade/          <-- GIFs organizados por categorías.
-│   └── Consolas/        <-- GIFs organizados por categorías.
-├── Batocera/            <-- Uso exclusivo para el Modo Arcade.
-│   ├── default/         <-- Generada automáticamente con el Script. (Aquí ira el gif por defecto "_default.gif")
-│   ├── mame/            <-- Generada automáticamente con el Script. GIFs organizados por sistemas
-│   └── neogeo/          <-- Generada automáticamente con el Script. GIFs organizados por sistemas
-├── batocera_cache.txt   <-- Generado automáticamente con el Script. (Índice de rutas - Modo Arcade)
-├── gif_cache.txt        <-- Generado automáticamente (Índice de rutas - Modo Galeria de GIFs)
-└── gif_cache.sig        <-- Generado automáticamente (Firma de validación - Modo Galeria de GIFs)
+├── gifs/                  <-- Uso exclusivo para el Modo Galeria de GIFs.
+│   ├── Arcade/            <-- GIFs organizados por categorías.
+│   └── Consolas/          <-- GIFs organizados por categorías.
+├── playlists/             <-- Aquí estarán las listas generadas por el script "Generador de Playlists".
+│   ├── Mis Favoritos.txt  <-- Lista .txt.
+│   ├── Metal Slug.txt     <-- Lista .txt.
+│   └── Todos.txt          <-- Lista .txt.
+├── Batocera/              <-- Uso exclusivo para el Modo Arcade.
+│   ├── default/           <-- Generada automáticamente con el Script. (Aquí ira el gif por defecto "_default.gif")
+│   ├── mame/              <-- Generada automáticamente con el Script. GIFs organizados por sistemas
+│   └── neogeo/            <-- Generada automáticamente con el Script. GIFs organizados por sistemas
+├── Generador de Playlists.bat   <-- Script para generar las Playlist.
+├── batocera_cache.txt     <-- Generado automáticamente con el Script. (Índice de rutas - Modo Arcade)
+├── gif_cache.txt          <-- Generado automáticamente (Índice de rutas - Modo Galeria de GIFs)
+└── gif_cache.sig          <-- Generado automáticamente (Firma de validación - Modo Galeria de GIFs)
 ```
 ### 4. 🌐 Configuración Inicial y Conexión Wi-Fi
 
@@ -163,8 +159,20 @@ Una vez que el dispositivo esté en tu red local, puedes acceder a su panel de c
 * **🏠 Home Assistant:** Manejo de todas las funciones disponibles desde Home Assistant.
 * **🛠️ Actualización OTA:** Instala nuevas versiones del firmware de forma inalámbrica.
 
+### 6. 📖 Cómo usar el Script Generador de Playlists (Windows)
 
-### 6. 🕹️ Integración con Batocera (Modo Arcade)
+El script `Generar_Playlist.bat` (v1.0.1) facilita la creación de colecciones personalizadas sin tocar una sola línea de código. Lo encontrarás en la carpeta "Playlist Script" de este GitHub.
+
+1. **Preparación:** Coloca el archivo `.bat` en la **raíz de tu tarjeta SD**, justo al lado de la carpeta `gifs`.
+2. **Ejecución:** Haz doble clic en el archivo. Se abrirá una ventana de comandos.
+3. **Selección:** - El script listará todas las subcarpetas dentro de `/gifs`.
+   - Introduce los números de las carpetas que quieras incluir en la lista separados por comas (ej: `3,4,10`) o escribe `TODO`.
+4. **Nombre:** Escribe el nombre que quieras para tu lista (ej: `MisFavoritos`). 
+5. **Resultado:** El script creará automáticamente una carpeta llamada `playlists` y guardará dentro el archivo `MisFavoritos.txt` con las rutas corregidas para el ESP32.
+6. **Carga:** Inserta la SD en tu Retro Pixel LED, ve a la interfaz Web y selecciona tu nueva lista en el menú desplegable.
+<img width="514" height="565" alt="Script PlayList" src="https://github.com/user-attachments/assets/3c600615-5539-4430-af7b-26cd219fc7fe" />
+
+### 7. 🕹️ Integración con Batocera (Modo Arcade)
 
 El **Modo Arcade** es una de las funciones más potentes de esta versión, permitiendo que la matriz LED actúe como una "Marquesina Arcade" dinámica que reacciona en tiempo real al juego que selecciones en tu sistema **Batocera**.
 
@@ -423,5 +431,5 @@ Agradecimientos especiales a los desarrolladores de:
 * **AnimatedGIF**
 * **WiFiManager**
 * **Comunidad Telegram DMDos** al encontrarla y ver de lo que era capáz DMDos me animé a desarrollar **Retro Pixel LED**.
-* **RpiTe@m** por la increíble recopilación de [GIFs.](https://www.neo-arcadia.com/forum/viewtopic.php?t=67065)
+* **RpiTeam** por la increíble recopilación de [GIFs.](https://www.neo-arcadia.com/forum/viewtopic.php?t=67065)
 * **joseAveleira** por la idea de las Notificaciones de tiempo en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
