@@ -422,6 +422,6 @@ Agradecimientos especiales a los desarrolladores de:
 * **ESP32-HUB75-MatrixPanel-I2S-DMA**
 * **AnimatedGIF**
 * **WiFiManager**
-* **Comunidad Telegram DMDos** al encontrarla y ver de lo que era capáz DMDos me animé a desarrollar Retro Pixel LED.
-* **RpiTe@m** por la increíble recopilación de GIFs.
+* **Comunidad Telegram DMDos** al encontrarla y ver de lo que era capáz DMDos me animé a desarrollar **Retro Pixel LED**.
+* **RpiTe@m** por la increíble recopilación de [GIFs.](https://www.neo-arcadia.com/forum/viewtopic.php?t=67065)
 * **joseAveleira** por la idea de las Notificaciones de tiempo en el Reloj. [GitHub](https://github.com/joseAveleira/RelojPixel/tree/main/src)
