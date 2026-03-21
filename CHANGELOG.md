@@ -1,5 +1,22 @@
 # 📓 Historial de Cambios (Changelog) - Retro Pixel LED
 
+
+## [4.0.0] - 2026-03-21
+### ✨ Añadido (The Playlist & Instant Response Update)
+- **📜 Sistema de Playlists Dinámicas:** Implementación de soporte para múltiples listas de reproducción personalizadas mediante archivos `.txt` en la carpeta `/playlists`. Permite al usuario alternar entre colecciones temáticas (ej. "MisFavoritos", "Metal Slug", "Arcade") desde la interfaz web sin necesidad de re-escanear toda la tarjeta SD.
+- **⚡ Interrupción Atómica de Renderizado:** Uso de la bandera global `interrumpirReproduccion` sincronizada entre núcleos. Ahora, al cambiar de Playlist, Modo o recibir un comando de Batocera, el GIF actual se detiene de forma **instantánea** (milisegundos), eliminando la espera de finalización del GIF anterior.
+- **🖥️ Script Generador de Playlists (v1.0.1):** Nueva herramienta interactiva para Windows que automatiza la creación de listas. Incluye detección inteligente de subcarpetas, normalización de rutas para ESP32 (`/gifs/...`) y creación automática de la estructura de directorios en la SD.
+- **💾 Persistencia NVS de Playlist:** El sistema ahora recuerda y carga automáticamente la última playlist seleccionada tras un reinicio, guardando el estado en la memoria no volátil del ESP32.
+
+### 🛠️ Optimizado (Core & Performance)
+- **🚀 Carga Instantánea:** Al usar el modo Playlist, el sistema omite el proceso de "LISTANDO GIFs...", permitiendo una reproducción inmediata incluso en tarjetas SD con miles de archivos.
+- **🧠 Memory Safety:** Optimización del uso de `std::vector` para el listado dinámico de archivos de playlist en la web, evitando fragmentación de memoria en procesos de selección largos.
+
+### 🐛 Corregido
+- **📏 Corrección de Rutas en Archivos:** Solucionado el error que duplicaba la letra de la unidad (ej. `I:\`) en las rutas de los archivos de caché cuando se generaban desde Windows.
+- **🔄 Reset de Índice:** Corregido el fallo donde el puntero de lectura (`gifCachePosition`) quedaba fuera de rango al cambiar de una lista larga a una más corta, evitando bloqueos en la lectura de la SD.
+---
+
 ## [3.0.5] - 2026-02-20
 ### 🛡️ Corregido (Critical Stability Hotfix)
 - **🔒 SD Mutex Integration (Modo Gestión):** Se ha implementado el uso de semáforos (`sdMutex`) en las funciones de listado de archivos y gestor de archivos. Esto elimina el error `Guru Meditation Error: LoadProhibited` que ocurría al intentar navegar por la web mientras el panel reproducía un GIF desde la SD.
