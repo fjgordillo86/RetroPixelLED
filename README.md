@@ -1,4 +1,4 @@
-# ✨ Retro Pixel LED v4.0.0
+# ✨ Retro Pixel LED v4.0.1
 
 ### **[✈️ Unirse al Grupo de Telegram: Retro Pixel LED](https://t.me/RetroPixelLed)**
 
@@ -15,17 +15,17 @@ Existe una versión **Lite** de este proyecto si quieres probarla aquí tienes e
 > [!TIP]
 > **📂 ¡Adiós a las esperas!: El Modo Playlist (v4.0.0)** permite cargar listas de GIFs generadas previamente en tu PC. Si seleccionas una Playlist en lugar del modo "Auto-generar", el panel **no necesita indexar la SD**, iniciándose la reproducción de forma **instantánea** incluso con miles de archivos.
 > 
-## 🚀 Novedades de la Versión 4.0.0 (¡Lo nuevo!)
+## 🚀 Novedades de la Versión 4.0.1 (¡Lo nuevo!)
 
-| Característica | Detalle Técnico | Beneficio |
-| :--- | :--- | :--- |
-| **📜 Dynamic Playlists** | Soporte para archivos `.txt` en la carpeta `/playlists`. | **Cambio de "Canal".** Elige entre listas como "Metal Slug", "Arcade" o "Consolas" al instante desde la Web. |
-| **⚡ Instant Switching** | Interrupción por hardware (`interrumpirReproduccion`) del núcleo de renderizado. | **Corte inmediato.** Al cambiar de modo o lista, el GIF actual se detiene al milisegundo sin esperar a que termine. |
-| **🖥️ PC Playlist Tool** | Script interactivo `.bat` (v2.3) para Windows optimizado. | **Gestión Pro.** Crea listas personalizadas seleccionando carpetas de tu SD en segundos con rutas limpias. |
-| **💾 NVS Persistence** | Guardado de la Playlist activa en la memoria Flash del ESP32. | **Memoria total.** Al reiniciar, el panel recuerda exactamente qué lista o modo estaba reproduciendo. |
-| **🕒 Auto Clock Interv.** | Ciclo de interrupción temporizada configurable. | **Reloj automático.** El panel muestra la hora cada X GIFs sin cambiar de modo manualmente. |
-| **🎨 External CSS** | Migración del estilo visual a un archivo `/style.css` en la SD. | **Web más rápida.** Libera memoria RAM crítica y permite el uso de caché del navegador. |
-| **🌱 Eco-Energy Mode** | Dynamic Frequency Scaling (80/240MHz). | **Menos calor.** El ESP32 reduce su potencia cuando el panel está apagado. |
+#### 🛡️ Corrección de Errores (Fixes)
+* **Asignación de red WiFi con WiFiManager:** Corregido el fallo de asignación de red — se forzaba manualmente el modo WiFi justo antes de autoConnect(), interfiriendo con la gestión interna de la librería, y no existía ningún callback que confirmara cuándo la conexión se completaba con éxito tras usar el portal.
+*  **Texto personalizado perdido en cada arranque:** El mensaje deslizante configurado por el usuario se sobreescribía siempre con mensajes de estado de WiFi en cada reinicio, sin restaurarse nunca. Ahora se conserva y se restaura una vez resuelta la conexión.
+*  **Cuelgue al pulsar "Configurar WiFi" en el portal cautivo:** El panel LED seguía refrescándose por DMA sin parar mientras el portal estaba activo, y ese tráfico interfería con el radio WiFi justo al escanear redes, dejando el portal sin responder. Ahora el panel se apaga de forma segura mientras el portal está activo y se reactiva al cerrarse.
+*  **IP no accesible tras configurar la red por primera vez:** Tras conectar con éxito desde el portal, el punto de acceso "Retro Pixel LED" podía quedar activo, dejando el móvil enganchado a esa red en vez de volver a la red real — la web no cargaba hasta reiniciar el panel manualmente. Ahora se fuerza el paso a modo estación (STA) en cuanto la conexión se confirma.
+*  **Parpadeo e imagen residual en el modo reloj:** El reloj se redibujaba en cada pasada del bucle principal (cientos de veces por segundo) sin límite ni presentación atómica del frame, y solo se limpiaba la pantalla completa al cambiar de minuto — dejando a veces restos del GIF reproducido anteriormente visibles de fondo. Ahora el redibujado está limitado a ~30 fps, limpia el frame completo en cada actualización y se presenta de forma atómica.
+*  **Servidor web bloqueado hasta 25s por reconexión MQTT:** La reconexión a MQTT usaba un bucle bloqueante con esperas de 5 segundos entre reintentos, dejando el servidor web sin responder mientras tanto si el broker estaba caído. Ahora la reconexión es no bloqueante.
+*  **Posible bloqueo permanente al actualizar por OTA:** La actualización OTA detenía la tarea del panel de forma abrupta, con riesgo de dejar el semáforo de acceso a la tarjeta SD "huérfano" para siempre si la tarea se eliminaba justo mientras lo tenía tomado. Ahora se garantiza su liberación antes de continuar.
+*   **Cuelgues por memoria fragmentada tras usar WiFi:** La inicialización del panel no comprobaba si display->begin() tenía éxito; si la memoria estaba fragmentada tras usar WiFi, el panel podía arrancar en un estado inválido y provocar un cuelgue más adelante. Ahora se detecta el fallo y se reintenta automáticamente en modo Single Buffer.
 
 
 ---
