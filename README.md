@@ -1,5 +1,14 @@
 # ✨ Retro Pixel LED v4.0.1
 
+> [!WARNING]
+> ### 🛑 PROYECTO DEPRECADO / NO MANTENIDO
+> Esta versión de **Retro Pixel LED** ya no recibe soporte ni actualizaciones.
+> 
+> Todos los esfuerzos de desarrollo y nuevas funcionalidades se han trasladado a la versión **Lite**, la cual es más estable, optimizada y cuenta con un mayor número de características.
+> 
+> ➡️ **[Ir al repositorio de RetroPixel LED Lite](https://github.com/fjgordillo86/RetroPixelLED-Lite/tree/main)**
+---
+
 ### **[✈️ Unirse al Grupo de Telegram: Retro Pixel LED](https://t.me/RetroPixelLed)**
 
 ## 💡 Descripción del Proyecto
